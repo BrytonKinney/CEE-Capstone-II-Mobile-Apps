@@ -4,3 +4,22 @@ This is the primary repository for all development pertaining to iOS and Android
 
 
 Work: TBD
+
+
+## Projects
+1. [Android Capstone App](#android-capstone-app)
+2. [iOS Capstone App](#ios-capstone-app)
+3. [Shared](#shared)
+
+
+### Android Capstone App
+
+Project description goes here
+
+### iOS Capstone App
+
+Project description goes here
+
+### Shared
+
+Project description goes here
