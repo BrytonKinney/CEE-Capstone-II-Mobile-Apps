@@ -7,20 +7,19 @@ Work: TBD
 
 
 ## Projects
-1. [Android Capstone App][Android Capstone App]
-2. [iOS Capstone App][Android Capstone App]
-3. [Shared][Shared]
+1. [Android Capstone App](#android-capstone-app)
+2. [iOS Capstone App](#ios-capstone-app)
+3. [Shared](#shared)
 
 
-
-### [Android Capstone App]
-
-Project description goes here
-
-### [iOS Capstone App]
+### Android Capstone App
 
 Project description goes here
 
-### [Shared]
+### iOS Capstone App
+
+Project description goes here
+
+### Shared
 
 Project description goes here
