@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Interfaces\" />
+    <PackageReference Include="LightInject" Version="5.1.10" />
   </ItemGroup>
 
 </Project>

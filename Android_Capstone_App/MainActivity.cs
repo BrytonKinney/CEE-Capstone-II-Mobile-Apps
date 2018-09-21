@@ -4,17 +4,25 @@ using Android_Capstone_App.Fragments;
 
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
+using LightInject;
+using Shared.Services.Implementations;
+using Shared.Services.Interfaces;
 
 namespace Android_Capstone_App
 {
     [Activity(Label = "@string/app_name", MainLauncher = true, LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Icon = "@drawable/icon")]
     public class MainActivity : AppCompatActivity
     {
+        /// <summary>
+        /// Service container for dependency injection
+        /// </summary>
+        private readonly ServiceContainer container = new ServiceContainer();
 
         BottomNavigationView bottomNavigation;
         protected override void OnCreate(Bundle bundle)
         {
-
+            container.Register<IXmlRssFeedParser, XmlRssFeedParser>(new PerContainerLifetime());
+            container.Register<IRssFeedReader, RssFeedReader>(new PerContainerLifetime());
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.main);
             var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
@@ -45,7 +53,7 @@ namespace Android_Capstone_App
             switch (id)
             {
                 case Resource.Id.menu_home:
-                    fragment = Fragment1.NewInstance();
+                    fragment = Fragment1.NewInstance(container.GetInstance<IRssFeedReader>());
                     break;
                 case Resource.Id.menu_audio:
                     fragment = Fragment2.NewInstance();

@@ -12,6 +12,8 @@ namespace Shared.Entities.RssFeed
 
         private string _description { get; set; }
 
+        private List<Article> _articles { get; set; }
+
         #region Constructor(s)
 
         /// <summary>
@@ -41,6 +43,24 @@ namespace Shared.Entities.RssFeed
         /// Read-only field describing the feed.
         /// </summary>
         public string Description => _description;
+
+        public List<Article> Articles => _articles;
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Called after the feed is read initially to populate the basic feed information.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        public void SetFeedInformation(string name, string description, List<Article> articles)
+        {
+            _feedName = name;
+            _description = description;
+            _articles = articles;
+        }
 
         #endregion
     }
