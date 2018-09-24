@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="LightInject" Version="5.1.10" />
+    <PackageReference Include="RemoteViewing" Version="0.9.1" />
   </ItemGroup>
 
 </Project>

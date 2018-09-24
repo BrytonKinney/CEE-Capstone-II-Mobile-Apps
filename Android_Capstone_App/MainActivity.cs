@@ -53,10 +53,10 @@ namespace Android_Capstone_App
             switch (id)
             {
                 case Resource.Id.menu_home:
-                    fragment = Fragment1.NewInstance(container.GetInstance<IRssFeedReader>());
+                    fragment = Fragment1.NewInstance();
                     break;
                 case Resource.Id.menu_audio:
-                    fragment = Fragment2.NewInstance();
+                    fragment = Fragment2.NewInstance(container.GetInstance<IRssFeedReader>());
                     break;
                 case Resource.Id.menu_video:
                     fragment = Fragment3.NewInstance();
