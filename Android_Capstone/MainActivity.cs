@@ -83,20 +83,20 @@ namespace Android_Capstone
         {
             int id = item.ItemId;
 
-            if (id == Resource.Id.nav_camera)
+            if (id == Resource.Id.nav_rss)
             {
                 StartActivity(typeof(RssFeeds));
                 // Handle the camera action
             }
-            else if (id == Resource.Id.nav_gallery)
+            else if (id == Resource.Id.nav_weather)
             {
 
             }
-            else if (id == Resource.Id.nav_slideshow)
+            else if (id == Resource.Id.nav_notification)
             {
 
             }
-            else if (id == Resource.Id.nav_manage)
+            else if (id == Resource.Id.nav_calendar)
             {
 
             }

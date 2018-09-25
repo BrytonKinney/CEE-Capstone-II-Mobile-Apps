@@ -2242,26 +2242,26 @@ namespace Android_Capstone
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f020071
-			public const int avd_hide_password_1 = 2130837617;
+			// aapt resource value: 0x7f020075
+			public const int avd_hide_password_1 = 2130837621;
 			
-			// aapt resource value: 0x7f020072
-			public const int avd_hide_password_2 = 2130837618;
+			// aapt resource value: 0x7f020076
+			public const int avd_hide_password_2 = 2130837622;
 			
-			// aapt resource value: 0x7f020073
-			public const int avd_hide_password_3 = 2130837619;
+			// aapt resource value: 0x7f020077
+			public const int avd_hide_password_3 = 2130837623;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
-			// aapt resource value: 0x7f020074
-			public const int avd_show_password_1 = 2130837620;
+			// aapt resource value: 0x7f020078
+			public const int avd_show_password_1 = 2130837624;
 			
-			// aapt resource value: 0x7f020075
-			public const int avd_show_password_2 = 2130837621;
+			// aapt resource value: 0x7f020079
+			public const int avd_show_password_2 = 2130837625;
 			
-			// aapt resource value: 0x7f020076
-			public const int avd_show_password_3 = 2130837622;
+			// aapt resource value: 0x7f02007a
+			public const int avd_show_password_3 = 2130837626;
 			
 			// aapt resource value: 0x7f020055
 			public const int design_bottom_navigation_item_background = 2130837589;
@@ -2282,13 +2282,22 @@ namespace Android_Capstone
 			public const int design_snackbar_background = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int ic_menu_camera = 2130837595;
+			public const int ic_menu_calendar = 2130837595;
+			
+			// aapt resource value: 0x7f020071
+			public const int ic_menu_camera = 2130837617;
+			
+			// aapt resource value: 0x7f020072
+			public const int ic_menu_gallery = 2130837618;
+			
+			// aapt resource value: 0x7f020074
+			public const int ic_menu_manage = 2130837620;
 			
 			// aapt resource value: 0x7f02005c
-			public const int ic_menu_gallery = 2130837596;
+			public const int ic_menu_notification = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int ic_menu_manage = 2130837597;
+			public const int ic_menu_rss = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
 			public const int ic_menu_send = 2130837598;
@@ -2296,8 +2305,11 @@ namespace Android_Capstone
 			// aapt resource value: 0x7f02005f
 			public const int ic_menu_share = 2130837599;
 			
+			// aapt resource value: 0x7f020073
+			public const int ic_menu_slideshow = 2130837619;
+			
 			// aapt resource value: 0x7f020060
-			public const int ic_menu_slideshow = 2130837600;
+			public const int ic_menu_weather = 2130837600;
 			
 			// aapt resource value: 0x7f020061
 			public const int navigation_empty_icon = 2130837601;
@@ -2651,20 +2663,20 @@ namespace Android_Capstone
 			// aapt resource value: 0x7f080028
 			public const int multiply = 2131230760;
 			
-			// aapt resource value: 0x7f0800b6
-			public const int nav_camera = 2131230902;
-			
-			// aapt resource value: 0x7f0800b7
-			public const int nav_gallery = 2131230903;
-			
 			// aapt resource value: 0x7f0800b9
-			public const int nav_manage = 2131230905;
+			public const int nav_calendar = 2131230905;
 			
 			// aapt resource value: 0x7f0800b8
-			public const int nav_slideshow = 2131230904;
+			public const int nav_notification = 2131230904;
+			
+			// aapt resource value: 0x7f0800b6
+			public const int nav_rss = 2131230902;
 			
 			// aapt resource value: 0x7f08008c
 			public const int nav_view = 2131230860;
+			
+			// aapt resource value: 0x7f0800b7
+			public const int nav_weather = 2131230903;
 			
 			// aapt resource value: 0x7f080097
 			public const int navigation_header_container = 2131230871;
