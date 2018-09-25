@@ -16,6 +16,8 @@ Work: TBD
 
 Project description goes here
 
+(/docs/images/android_app_iteration1.gif)
+
 ### iOS Capstone App
 
 Project description goes here
