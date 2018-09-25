@@ -25,7 +25,7 @@ namespace Shared.Services.Implementations
         {
             WebClient client = new WebClient();
             byte[] resp = await client.DownloadDataTaskAsync(new Uri(feed.FeedUrl));
-            await _xmlReader.ParseFeed(feed, resp);
+            _xmlReader.ParseFeed(feed, resp);
             return feed.Articles;
         }
     }

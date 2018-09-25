@@ -9,6 +9,6 @@ namespace Shared.Services.Interfaces
 {
     public interface IXmlRssFeedParser
     {
-        Task ParseFeed(RssFeed feed, byte[] content);
+        void ParseFeed(RssFeed feed, byte[] content);
     }
 }

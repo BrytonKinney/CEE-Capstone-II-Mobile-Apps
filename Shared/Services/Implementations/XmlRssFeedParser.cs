@@ -15,7 +15,7 @@ namespace Shared.Services.Implementations
     public class XmlRssFeedParser : IXmlRssFeedParser
     {
         
-        public async Task ParseFeed(RssFeed feed, byte[] content)
+        public void ParseFeed(RssFeed feed, byte[] content)
         {
             List<Article> articles = new List<Article>();
             // Let's hope it's UTF-8
