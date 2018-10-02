@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LightInject" Version="5.1.10" />
+    <PackageReference Include="LightInject" Version="5.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
     <PackageReference Include="SSH.NET" Version="2016.1.0" />
   </ItemGroup>
 

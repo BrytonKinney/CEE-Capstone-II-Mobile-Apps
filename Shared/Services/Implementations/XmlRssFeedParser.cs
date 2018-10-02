@@ -39,7 +39,12 @@ namespace Shared.Services.Implementations
                 }
                 articles.Add(new Article(articleTitle, articleLink, articleDesc));
             }
-            feed.SetFeedInformation(name, description, articles);
+
+            feed.Articles = articles;
+            feed.Description = description;
+            feed.Enabled = 0;
+            feed.Name = name;
+            feed.MaxArticles = 3;
         }
     }
 }

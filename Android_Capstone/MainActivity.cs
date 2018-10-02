@@ -21,11 +21,17 @@ namespace Android_Capstone
         private static readonly ServiceContainer _container = new ServiceContainer();
 
         public static ServiceContainer Container => _container;
-        protected override void OnCreate(Bundle savedInstanceState)
+
+        private void RegisterServices()
         {
             _container.Register<IXmlRssFeedParser, XmlRssFeedParser>(new PerContainerLifetime());
             _container.Register<IRssFeedReader, RssFeedReader>(new PerContainerLifetime());
+            _container.Register<IDatabaseProvider, DatabaseProvider>(new PerContainerLifetime());
+        }
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
             base.OnCreate(savedInstanceState);
+            RegisterServices();
             SetContentView(Resource.Layout.activity_main);
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
@@ -86,7 +92,6 @@ namespace Android_Capstone
             if (id == Resource.Id.nav_rss)
             {
                 StartActivity(typeof(RssFeeds));
-                // Handle the camera action
             }
             else if (id == Resource.Id.nav_weather)
             {

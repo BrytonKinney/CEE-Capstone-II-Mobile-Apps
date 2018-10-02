@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
-
+using Newtonsoft.Json;
+using SQLite;
+using RC = Shared.Constants.DatabaseConstants.RSS;
+using JC = Shared.Constants.JsonSerializerAttributes.RssFeeds;
 namespace Shared.Entities.RssFeed
 {
-    public class RssFeed
+    [Table(RC.RSS_FEED_TABLE)]
+    public class RssFeed : BaseEntity
     {
-        private string _rssUrl { get; set; }
-
-        private string _feedName { get; set; }
-
-        private string _description { get; set; }
-
-        private List<Article> _articles { get; set; }
-
         #region Constructor(s)
+
+        public RssFeed() {}
 
         /// <summary>
         /// Constructor for an RSS Feed
@@ -22,7 +21,7 @@ namespace Shared.Entities.RssFeed
         /// <param name="rssFeedUrl"></param>
         public RssFeed(string rssFeedUrl)
         {
-            _rssUrl = rssFeedUrl;
+            FeedUrl = rssFeedUrl;
         }
 
         #endregion
@@ -32,36 +31,37 @@ namespace Shared.Entities.RssFeed
         /// <summary>
         /// A read-only property to access the feed's url.
         /// </summary>
-        public string FeedUrl => _rssUrl;
+        [JsonProperty(PropertyName = JC.FeedUrl)]
+        [SQLite.Column(RC.RSS_FEED_URL)]
+        public string FeedUrl { get; set; }
 
         /// <summary>
         /// Read-only property for the name of the feed.
         /// </summary>
-        public string Name => _feedName;
+        [JsonProperty(PropertyName = JC.FeedName)]
+        [SQLite.Column(RC.RSS_FEED_NAME)]
+        public string Name { get; set; }
 
         /// <summary>
         /// Read-only field describing the feed.
         /// </summary>
-        public string Description => _description;
+        [JsonProperty(PropertyName = JC.Description)]
+        [SQLite.Column(RC.RSS_FEED_DESCRIPTION)]
+        public string Description {get; set; }
 
-        public List<Article> Articles => _articles;
+        [SQLite.Ignore()]
+        [JsonProperty(PropertyName = JC.Articles)]
+        public List<Article> Articles { get; set; }
 
-        #endregion
+        [JsonProperty(PropertyName = JC.Enabled)]
+        [SQLite.Column(RC.RSS_FEED_ENABLED)]
+        public int Enabled { get; set; }
 
-        #region Public Methods
-
-        /// <summary>
-        /// Called after the feed is read initially to populate the basic feed information.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="description"></param>
-        public void SetFeedInformation(string name, string description, List<Article> articles)
-        {
-            _feedName = name;
-            _description = description;
-            _articles = articles;
-        }
+        [JsonProperty(PropertyName = JC.MaxArticles)]
+        [SQLite.Column(RC.RSS_FEED_MAX_ARTICLES)]
+        public int MaxArticles { get; set; }
 
         #endregion
+
     }
 }

@@ -2441,8 +2441,8 @@ namespace Android_Capstone
 			// aapt resource value: 0x7f08005c
 			public const int action_mode_close_button = 2131230812;
 			
-			// aapt resource value: 0x7f0800ba
-			public const int action_settings = 2131230906;
+			// aapt resource value: 0x7f0800bf
+			public const int action_settings = 2131230911;
 			
 			// aapt resource value: 0x7f0800a1
 			public const int action_text = 2131230881;
@@ -2519,6 +2519,9 @@ namespace Android_Capstone
 			// aapt resource value: 0x7f080092
 			public const int coordinator = 2131230866;
 			
+			// aapt resource value: 0x7f0800b6
+			public const int currentArticleList = 2131230902;
+			
 			// aapt resource value: 0x7f08006d
 			public const int custom = 2131230829;
 			
@@ -2554,6 +2557,9 @@ namespace Android_Capstone
 			
 			// aapt resource value: 0x7f08007e
 			public const int edit_query = 2131230846;
+			
+			// aapt resource value: 0x7f0800b2
+			public const int enabledCheckbox = 2131230898;
 			
 			// aapt resource value: 0x7f080030
 			public const int end = 2131230768;
@@ -2645,14 +2651,14 @@ namespace Android_Capstone
 			// aapt resource value: 0x7f080061
 			public const int list_item = 2131230817;
 			
-			// aapt resource value: 0x7f0800b5
-			public const int masked = 2131230901;
+			// aapt resource value: 0x7f0800ba
+			public const int masked = 2131230906;
 			
 			// aapt resource value: 0x7f0800a5
 			public const int media_actions = 2131230885;
 			
-			// aapt resource value: 0x7f0800b3
-			public const int message = 2131230899;
+			// aapt resource value: 0x7f0800b8
+			public const int message = 2131230904;
 			
 			// aapt resource value: 0x7f080031
 			public const int middle = 2131230769;
@@ -2663,20 +2669,20 @@ namespace Android_Capstone
 			// aapt resource value: 0x7f080028
 			public const int multiply = 2131230760;
 			
-			// aapt resource value: 0x7f0800b9
-			public const int nav_calendar = 2131230905;
+			// aapt resource value: 0x7f0800be
+			public const int nav_calendar = 2131230910;
 			
-			// aapt resource value: 0x7f0800b8
-			public const int nav_notification = 2131230904;
+			// aapt resource value: 0x7f0800bd
+			public const int nav_notification = 2131230909;
 			
-			// aapt resource value: 0x7f0800b6
-			public const int nav_rss = 2131230902;
+			// aapt resource value: 0x7f0800bb
+			public const int nav_rss = 2131230907;
 			
 			// aapt resource value: 0x7f08008c
 			public const int nav_view = 2131230860;
 			
-			// aapt resource value: 0x7f0800b7
-			public const int nav_weather = 2131230903;
+			// aapt resource value: 0x7f0800bc
+			public const int nav_weather = 2131230908;
 			
 			// aapt resource value: 0x7f080097
 			public const int navigation_header_container = 2131230871;
@@ -2698,6 +2704,9 @@ namespace Android_Capstone
 			
 			// aapt resource value: 0x7f0800a7
 			public const int notification_main_column_container = 2131230887;
+			
+			// aapt resource value: 0x7f0800b4
+			public const int numOfArticles = 2131230900;
 			
 			// aapt resource value: 0x7f08004c
 			public const int parallax = 2131230796;
@@ -2729,8 +2738,11 @@ namespace Android_Capstone
 			// aapt resource value: 0x7f0800a9
 			public const int right_side = 2131230889;
 			
-			// aapt resource value: 0x7f0800b2
-			public const int rss_feeds = 2131230898;
+			// aapt resource value: 0x7f0800b7
+			public const int rss_feeds = 2131230903;
+			
+			// aapt resource value: 0x7f0800b5
+			public const int saveChangesBtn = 2131230901;
 			
 			// aapt resource value: 0x7f08000c
 			public const int save_image_matrix = 2131230732;
@@ -2864,6 +2876,9 @@ namespace Android_Capstone
 			// aapt resource value: 0x7f08009e
 			public const int textView = 2131230878;
 			
+			// aapt resource value: 0x7f0800b3
+			public const int textView1 = 2131230899;
+			
 			// aapt resource value: 0x7f08009c
 			public const int text_input_password_toggle = 2131230876;
 			
@@ -2924,8 +2939,8 @@ namespace Android_Capstone
 			// aapt resource value: 0x7f080016
 			public const int view_offset_helper = 2131230742;
 			
-			// aapt resource value: 0x7f0800b4
-			public const int visible = 2131230900;
+			// aapt resource value: 0x7f0800b9
+			public const int visible = 2131230905;
 			
 			// aapt resource value: 0x7f08003c
 			public const int withText = 2131230780;
@@ -3167,22 +3182,25 @@ namespace Android_Capstone
 			public const int notification_template_part_time = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int rss_feeds = 2130968635;
+			public const int rss_feed_details = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int select_dialog_item_material = 2130968636;
+			public const int rss_feeds = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int select_dialog_multichoice_material = 2130968637;
+			public const int select_dialog_item_material = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int select_dialog_singlechoice_material = 2130968638;
+			public const int select_dialog_multichoice_material = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int support_simple_spinner_dropdown_item = 2130968639;
+			public const int select_dialog_singlechoice_material = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int tooltip = 2130968640;
+			public const int support_simple_spinner_dropdown_item = 2130968640;
+			
+			// aapt resource value: 0x7f040041
+			public const int tooltip = 2130968641;
 			
 			static Layout()
 			{
@@ -3333,6 +3351,9 @@ namespace Android_Capstone
 			
 			// aapt resource value: 0x7f09001e
 			public const int appbar_scrolling_view_behavior = 2131296286;
+			
+			// aapt resource value: 0x7f09002b
+			public const int article_titles = 2131296299;
 			
 			// aapt resource value: 0x7f09001f
 			public const int bottom_sheet_behavior = 2131296287;
