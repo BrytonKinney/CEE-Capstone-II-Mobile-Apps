@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace Shared.Constants
 {
@@ -24,6 +24,22 @@ namespace Shared.Constants
         public const string LINK = "link";
         public const string DESC = "description";
         public const string PUB_DATE = "pubDate";
+    }
+
+    /// <summary>
+    /// Holds constants for Newtonsoft's JSON
+    /// </summary>
+    public static class JsonSerializerAttributes
+    {
+        public static class RssFeeds
+        {
+            public const string FeedName = "Name";
+            public const string FeedUrl = "FeedUrl";
+            public const string Enabled = "Enabled";
+            public const string Description = "Description";
+            public const string Articles = "Articles";
+            public const string MaxArticles = "MaxArticles";
+        }
     }
 
     /// <summary>
@@ -66,5 +82,25 @@ namespace Shared.Constants
 
         #endregion
 
+    }
+
+    /// <summary>
+    /// Constants like lengths, table names, etc.
+    /// </summary>
+    public static class DatabaseConstants
+    {
+        public const string DATABASE_FILE_NAME = "capstone_app_settings.db";
+        public static string DATABASE_FILE_LOCATION = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DATABASE_FILE_NAME);
+        public const string ID = "id";
+        public static class RSS
+        {
+            public const string RSS_FEED_TABLE = "rssfeeds";
+            public const string RSS_FEED_ID = "id";
+            public const string RSS_FEED_URL = "url";
+            public const string RSS_FEED_NAME = "name";
+            public const string RSS_FEED_DESCRIPTION = "description";
+            public const string RSS_FEED_ENABLED = "enabled";
+            public const string RSS_FEED_MAX_ARTICLES = "articlenum";
+        }
     }
 }
