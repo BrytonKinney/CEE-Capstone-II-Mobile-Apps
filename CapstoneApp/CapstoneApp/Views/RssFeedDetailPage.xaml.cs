@@ -12,28 +12,28 @@ using Shared.Entities.RssFeed;
 namespace CapstoneApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemDetailPage : ContentPage
+    public partial class RssFeedDetailPage : ContentPage
     {
-        ItemDetailViewModel viewModel;
+        RssFeedDetailViewModel viewModel;
 
-        public ItemDetailPage(ItemDetailViewModel viewModel)
+        public RssFeedDetailPage(RssFeedDetailViewModel viewModel)
         {
             InitializeComponent();
 
             BindingContext = this.viewModel = viewModel;
         }
 
-        public ItemDetailPage()
+        public RssFeedDetailPage()
         {
             InitializeComponent();
 
-            var item = new Item
+            var item = new RssFeedModel
             {
                 Text = "Item 1",
                 Description = "This is an item description."
             };
 
-            viewModel = new ItemDetailViewModel(item);
+            viewModel = new RssFeedDetailViewModel(item);
             BindingContext = viewModel;
         }
 
@@ -41,7 +41,7 @@ namespace CapstoneApp.Views
         {
             new Command(async () => {
                 var db = App.Container.GetInstance<IDatabaseProvider>();
-                Item item = viewModel.Item;
+                RssFeedModel item = viewModel.Item;
                 int id = Convert.ToInt32(item.Id);
                 var rssFeed = await db.GetConnection().Table<RssFeed>().Where(r => r.Id == id).FirstOrDefaultAsync();
                 if(rssFeed != null)
@@ -49,6 +49,11 @@ namespace CapstoneApp.Views
                     rssFeed.Enabled = item.Enabled ? 1 : 0;
                 }
                 await db.AddOrUpdateAsync(rssFeed);
+                Device.BeginInvokeOnMainThread(async () => 
+                {
+                    await Application.Current.MainPage.DisplayAlert("Saved changes", "RSS Feed Settings saved.", "OK");
+                    await Navigation.PopAsync();
+                });
             }).Execute(null);
         }
     }

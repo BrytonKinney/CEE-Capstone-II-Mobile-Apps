@@ -9,10 +9,10 @@ using Xamarin.Forms;
 
 namespace CapstoneApp.ViewModels
 {
-    public class ItemDetailViewModel : BaseViewModel
+    public class RssFeedDetailViewModel : BaseViewModel
     {
-        public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+        public RssFeedModel Item { get; set; }
+        public RssFeedDetailViewModel(RssFeedModel item = null)
         {
             Title = item?.Text;
             Item = item;
