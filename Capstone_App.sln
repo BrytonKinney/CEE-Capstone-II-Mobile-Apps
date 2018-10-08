@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Blend for Visual Studio 15
+# Visual Studio 15
 VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{58EDF93B-6248-4E27-BE2C-A312F9E1D702}"
@@ -8,17 +8,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{DE938B8C-7989-408C-8E69-BC3F929475EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{C327D50B-882F-4EF2-9A56-EA043D802D0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{C327D50B-882F-4EF2-9A56-EA043D802D0B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapstoneApp.Android", "CapstoneApp\CapstoneApp.Android\CapstoneApp.Android.csproj", "{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Android_Capstone", "Android_Capstone\Android_Capstone.csproj", "{07272096-7498-4F50-B9FC-AA5202BDA99D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapstoneApp.iOS", "CapstoneApp\CapstoneApp.iOS\CapstoneApp.iOS.csproj", "{01387EA4-125A-4FAC-9430-405D432CBC35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapstoneApp.Android", "Android_CapstoneApp\Android_CapstoneApp.Android\CapstoneApp.Android.csproj", "{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapstoneApp.iOS", "Android_CapstoneApp\Android_CapstoneApp.iOS\CapstoneApp.iOS.csproj", "{01387EA4-125A-4FAC-9430-405D432CBC35}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapstoneApp.Shared", "Android_CapstoneApp\Android_CapstoneApp\CapstoneApp.Shared.csproj", "{D0DC1A36-E801-402B-80FC-2808EC8E7759}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapstoneApp.Shared", "CapstoneApp\CapstoneApp\CapstoneApp.Shared.csproj", "{D0DC1A36-E801-402B-80FC-2808EC8E7759}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,18 +26,6 @@ Global
 		Release|iPhoneSimulator = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DE938B8C-7989-408C-8E69-BC3F929475EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE938B8C-7989-408C-8E69-BC3F929475EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE938B8C-7989-408C-8E69-BC3F929475EC}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{DE938B8C-7989-408C-8E69-BC3F929475EC}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{DE938B8C-7989-408C-8E69-BC3F929475EC}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{DE938B8C-7989-408C-8E69-BC3F929475EC}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{DE938B8C-7989-408C-8E69-BC3F929475EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE938B8C-7989-408C-8E69-BC3F929475EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DE938B8C-7989-408C-8E69-BC3F929475EC}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{DE938B8C-7989-408C-8E69-BC3F929475EC}.Release|iPhone.Build.0 = Release|Any CPU
-		{DE938B8C-7989-408C-8E69-BC3F929475EC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{DE938B8C-7989-408C-8E69-BC3F929475EC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{C327D50B-882F-4EF2-9A56-EA043D802D0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C327D50B-882F-4EF2-9A56-EA043D802D0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C327D50B-882F-4EF2-9A56-EA043D802D0B}.Debug|iPhone.ActiveCfg = Debug|Any CPU
@@ -54,24 +38,6 @@ Global
 		{C327D50B-882F-4EF2-9A56-EA043D802D0B}.Release|iPhone.Build.0 = Release|Any CPU
 		{C327D50B-882F-4EF2-9A56-EA043D802D0B}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{C327D50B-882F-4EF2-9A56-EA043D802D0B}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|iPhone.Deploy.0 = Debug|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|iPhoneSimulator.Deploy.0 = Debug|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|iPhone.Build.0 = Release|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|iPhone.Deploy.0 = Release|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
 		{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
