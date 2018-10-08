@@ -64,11 +64,9 @@ namespace CapstoneApp.ViewModels
                 _feedReader = App.Container.GetInstance<IRssFeedReader>();
                 var db = App.Container.GetInstance<IDatabaseProvider>().GetConnection();
                 var rssFeeds = await db.Table<RssFeed>().ToListAsync();
-                List<string> rssFeedUrls = new List<string>();
+                List<string> rssFeedUrls = DefaultRssFeedUrls.GetAll();
                 if(rssFeeds.Count > 0)
-                    rssFeedUrls = rssFeeds.Select(rss => rss.FeedUrl).ToList();
-                else
-                    rssFeedUrls = DefaultRssFeedUrls.GetAll();
+                    rssFeedUrls.AddRange(rssFeeds.Select(rss => rss.FeedUrl).ToList());
                 foreach(var feedUrl in rssFeedUrls)
                 {
                     RssFeed feed = new RssFeed(feedUrl);

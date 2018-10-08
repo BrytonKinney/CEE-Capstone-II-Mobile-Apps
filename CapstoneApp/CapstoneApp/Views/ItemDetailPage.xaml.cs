@@ -49,6 +49,11 @@ namespace CapstoneApp.Views
                     rssFeed.Enabled = item.Enabled ? 1 : 0;
                 }
                 await db.AddOrUpdateAsync(rssFeed);
+                Device.BeginInvokeOnMainThread(async () => 
+                {
+                    await Application.Current.MainPage.DisplayAlert("Saved changes", "RSS Feed Settings saved.", "OK");
+                    await Navigation.PopAsync();
+                });
             }).Execute(null);
         }
     }
