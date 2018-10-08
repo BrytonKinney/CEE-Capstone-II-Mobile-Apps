@@ -1,4 +1,5 @@
 ﻿using CapstoneApp.Models;
+using CapstoneApp.Shared.Views;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -31,6 +32,9 @@ namespace CapstoneApp.Views
                         break;
                     case (int)MenuItemType.About:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));
+                        break;
+                    case (int)MenuItemType.Weather:
+                        MenuPages.Add(id, new NavigationPage(new WeatherProviderPage()));
                         break;
                 }
             }

@@ -1,5 +1,8 @@
-﻿using System;
+﻿using CapstoneApp.Shared.Constants;
+using CapstoneApp.Shared.Models;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -83,6 +86,20 @@ namespace Shared.Constants
         #endregion
 
     }
+    public static class WeatherSettings
+    {
+        public enum Location
+        {
+            ZIP,
+            Coordinates,
+            CityCountry
+        }
+        public static string[] LocationDropdownOptions = {"ZIP Code", "Coordinates (Your Current Location)", "City and Country Code" };
+    }
+    public static class DefaultWeatherServices
+    {
+       // public static WeatherModel OpenWeather
+    }
 
     /// <summary>
     /// Constants like lengths, table names, etc.
@@ -106,7 +123,7 @@ namespace Shared.Constants
 
     public static class ViewConstants
     {
-        public const string RSS_FEEDS = "RSS Feeds";
+        public const string RSS_FEEDS_TITLE = "RSS Feeds";
     }
 
     public static class CommandConstants

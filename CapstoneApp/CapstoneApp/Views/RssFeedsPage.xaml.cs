@@ -17,22 +17,22 @@ namespace CapstoneApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RssFeedsPage : ContentPage
     {
-        ItemsViewModel viewModel;
+        RssFeedViewModel viewModel;
 
         public RssFeedsPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel(CommandConstants.VIEWS.RssFeeds);
+            BindingContext = viewModel = new RssFeedViewModel(CommandConstants.VIEWS.RssFeeds);
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as Item;
+            var item = args.SelectedItem as RssFeedModel;
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(new RssFeedDetailPage(new RssFeedDetailViewModel(item)));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;

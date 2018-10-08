@@ -3,10 +3,10 @@ using System;
 
 namespace CapstoneApp.Models
 {
-    public class Item
+    public class RssFeedModel
     {
-        public Item() {}
-        public Item(RssFeed feed)
+        public RssFeedModel() {}
+        public RssFeedModel(RssFeed feed)
         {
             Id = feed.Id.ToString();
             Text = feed.Name;

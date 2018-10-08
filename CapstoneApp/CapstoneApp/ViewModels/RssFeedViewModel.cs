@@ -14,28 +14,28 @@ using Xamarin.Forms;
 
 namespace CapstoneApp.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class RssFeedViewModel : BaseViewModel
     {
-        public ObservableCollection<Item> Items { get; set; }
+        public ObservableCollection<RssFeedModel> Items { get; set; }
         private CommandConstants.VIEWS currentView { get; set; }
         public Command LoadItemsCommand { get; set; }
         private IRssFeedReader _feedReader;
 
-        public ItemsViewModel(CommandConstants.VIEWS command)
+        public RssFeedViewModel(CommandConstants.VIEWS command)
         {
             if(command == CommandConstants.VIEWS.RssFeeds)
             {
-                Title = ViewConstants.RSS_FEEDS;
+                Title = ViewConstants.RSS_FEEDS_TITLE;
                 currentView = command;
             }
             else
                 Title = "None";
-            Items = new ObservableCollection<Item>();
+            Items = new ObservableCollection<RssFeedModel>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<NewItemPage, RssFeedModel>(this, "AddRssFeed", async (obj, item) =>
             {
-                var newItem = item as Item;
+                var newItem = item as RssFeedModel;
                 RssFeed newFeed = new RssFeed(newItem.Url);
                 await _feedReader.GetFeedArticles(newFeed).ContinueWith(async (t) =>
                 {
@@ -45,7 +45,7 @@ namespace CapstoneApp.ViewModels
                     {
                         var dbDriver = App.Container.GetInstance<IDatabaseProvider>();
                         await dbDriver.AddOrUpdateAsync(newFeed);
-                        Items.Add(new Item(newFeed));
+                        Items.Add(new RssFeedModel(newFeed));
                     }
                 });
             });
@@ -74,7 +74,7 @@ namespace CapstoneApp.ViewModels
                     {
                         await db.InsertOrReplaceAsync(feed);
                         if(t.IsCompleted && !t.IsFaulted)
-                            Items.Add(new Item(feed));
+                            Items.Add(new RssFeedModel(feed));
                     });
                 }
             }

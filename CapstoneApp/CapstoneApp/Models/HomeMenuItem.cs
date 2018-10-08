@@ -7,7 +7,8 @@ namespace CapstoneApp.Models
     public enum MenuItemType
     {
         RssFeeds,
-        About
+        About,
+        Weather
     }
     public class HomeMenuItem
     {

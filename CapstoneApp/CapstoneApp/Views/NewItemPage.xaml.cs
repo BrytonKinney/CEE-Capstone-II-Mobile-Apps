@@ -11,13 +11,13 @@ namespace CapstoneApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewItemPage : ContentPage
     {
-        public Item Item { get; set; }
+        public RssFeedModel Item { get; set; }
 
         public NewItemPage()
         {
             InitializeComponent();
 
-            Item = new Item
+            Item = new RssFeedModel
             {
                 Text = "Item name",
                 Description = "This is an item description."
@@ -28,7 +28,7 @@ namespace CapstoneApp.Views
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddItem", Item);
+            MessagingCenter.Send(this, "AddRssFeed", Item);
             await Navigation.PopModalAsync();
         }
 

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CapstoneApp.Shared.Views.NewWeatherLocationPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="cancel.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Text="Save" Clicked="Save_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="save.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Name" />
+            <Entry Text="{Binding Item.Name}"/>
+            <Label Text="Location Options" />
+            <Picker x:Name="LocationSelection" 
+                    Title="Location Options" 
+                    ItemsSource="LocationDropdowns" 
+                    SelectedIndexChanged="LocationSelection_SelectedIndexChanged">
+                <Picker.Items>
+                    <x:String>ZIP Code</x:String>
+                    <x:String>Coordinates (Your Current Location)</x:String>
+                    <x:String>City &amp; Country</x:String>
+                </Picker.Items>    
+            </Picker>
+            <StackLayout IsVisible="False" x:Name="ZIPCodeEntries">
+                <Entry x:Name="ZipCodeEntry" Placeholder="ZIP Code" />
+            </StackLayout>
+            <StackLayout IsVisible="False" x:Name="CoordinatesEntries">
+                <Entry x:Name="LatitudeEntry" Placeholder="Latitude" />
+                <Entry x:Name="LongitudeEntry" Placeholder="Longitude" />
+            </StackLayout>
+            <StackLayout IsVisible="False" x:Name="CityCountryEntries">
+                <Entry x:Name="CityEntry" Placeholder="City" />
+                <Picker Title="Country" x:Name="CountryDropdowns" 
+                        ItemsSource="{Binding CountryNames}"
+                        ItemDisplayBinding="{Binding Name}" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
