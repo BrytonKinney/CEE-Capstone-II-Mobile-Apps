@@ -72,8 +72,9 @@ namespace CapstoneApp.ViewModels
                 foreach(var feedUrl in rssFeedUrls)
                 {
                     RssFeed feed = new RssFeed(feedUrl);
-                    await _feedReader.GetFeedArticles(feed).ContinueWith((t) =>
+                    await _feedReader.GetFeedArticles(feed).ContinueWith(async (t) =>
                     {
+                        await db.InsertOrReplaceAsync(feed);
                         if(t.IsCompleted && !t.IsFaulted)
                             Items.Add(new Item(feed));
                     });

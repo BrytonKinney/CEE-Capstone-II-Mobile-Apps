@@ -5,6 +5,9 @@ using Xamarin.Forms.Xaml;
 
 using CapstoneApp.Models;
 using CapstoneApp.ViewModels;
+using Shared.Services.Interfaces;
+using LightInject;
+using Shared.Entities.RssFeed;
 
 namespace CapstoneApp.Views
 {
@@ -32,6 +35,21 @@ namespace CapstoneApp.Views
 
             viewModel = new ItemDetailViewModel(item);
             BindingContext = viewModel;
+        }
+
+        private void saveChangesBtn_Clicked(object sender, EventArgs e)
+        {
+            new Command(async () => {
+                var db = App.Container.GetInstance<IDatabaseProvider>();
+                Item item = viewModel.Item;
+                int id = Convert.ToInt32(item.Id);
+                var rssFeed = await db.GetConnection().Table<RssFeed>().Where(r => r.Id == id).FirstOrDefaultAsync();
+                if(rssFeed != null)
+                {
+                    rssFeed.Enabled = item.Enabled ? 1 : 0;
+                }
+                await db.AddOrUpdateAsync(rssFeed);
+            }).Execute(null);
         }
     }
 }
