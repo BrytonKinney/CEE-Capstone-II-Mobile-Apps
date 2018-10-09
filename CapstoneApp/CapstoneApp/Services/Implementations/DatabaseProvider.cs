@@ -1,4 +1,5 @@
-﻿using Shared.Entities.RssFeed;
+﻿using CapstoneApp.Shared.Entities;
+using Shared.Entities.RssFeed;
 using Shared.Services.Interfaces;
 using SQLite;
 using System;
@@ -20,6 +21,7 @@ namespace Shared.Services.Implementations
             try
             {
                 await _connection.CreateTableAsync<RssFeed>();
+                await _connection.CreateTableAsync<WeatherLocations>();
             }
             catch (Exception ex)
             {

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CapstoneApp.Shared.Constants;
 using CapstoneApp.Shared.Models;
 using CapstoneApp.Shared.ViewModels;
+using Plugin.Geolocator;
 using Shared.Constants;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,15 +17,11 @@ namespace CapstoneApp.Shared.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class NewWeatherLocationPage : ContentPage
 	{
-		public WeatherModel Item { get; set; }
+		public WeatherModel Item = new WeatherModel();
         public WeatherLocationDetailsModel viewModel;
 		public NewWeatherLocationPage ()
 		{
 			InitializeComponent ();
-			Item = new WeatherModel
-			{
-				Name = ""
-			};
             BindingContext = viewModel = new WeatherLocationDetailsModel();
 		}
 		async void Save_Clicked(object sender, EventArgs e)
@@ -36,7 +33,11 @@ namespace CapstoneApp.Shared.Views
 		{
 			await Navigation.PopModalAsync();
 		}
-
+        async Task<Plugin.Geolocator.Abstractions.Position> GetLocation()
+        {
+            var locator = CrossGeolocator.Current;
+            return await locator.GetLastKnownLocationAsync();
+        }
 		private void LocationSelection_SelectedIndexChanged(object sender, EventArgs e)
 		{
             Picker p = (Picker)sender;
@@ -51,6 +52,16 @@ namespace CapstoneApp.Shared.Views
                 CoordinatesEntries.IsVisible = true; 
                 ZIPCodeEntries.IsVisible = false;
                 CityCountryEntries.IsVisible = false;
+                var location = GetLocation().ContinueWith(t => {
+                    if(t.IsCompleted)
+                    {
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            LatitudeEntry.Text = t.Result.Latitude.ToString();
+                            LongitudeEntry.Text = t.Result.Longitude.ToString();
+                        });
+                    }
+                });
             }
             else if(p.SelectedIndex == (int)WeatherSettings.Location.CityCountry)
             {
@@ -59,5 +70,42 @@ namespace CapstoneApp.Shared.Views
                 ZIPCodeEntries.IsVisible = false;
             }
 		}
-	}
+
+        private void CountryDropdowns_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Picker p = (Picker)sender;
+            Country selCountry = (Country)p.SelectedItem;
+            Item.CountryCode = selCountry.TwoLetterCode;
+        }
+
+        private void CityEntry_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            var entry = (Entry)sender;
+            Item.City = entry?.Text ?? "";
+        }
+
+        private void LatitudeEntry_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            var entry = (Entry)sender;
+            Item.Latitude = entry?.Text ?? "";
+        }
+
+        private void LongitudeEntry_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            var entry = (Entry)sender;
+            Item.Longitude = entry?.Text ?? "";
+        }
+
+        private void ZipCodeEntry_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            var entry = (Entry)sender;
+            Item.ZipCode = entry?.Text ?? "";
+        }
+
+        private void Entry_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            var entry = (Entry)sender;
+            Item.Name = entry?.Text ?? "";
+        }
+    }
 }
