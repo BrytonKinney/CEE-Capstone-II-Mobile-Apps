@@ -21,7 +21,8 @@
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
             <Label Text="Name" />
-            <Entry Text="{Binding Item.Name}"/>
+            <Entry Text="{Binding Item.Name}"
+                   PropertyChanged="Entry_PropertyChanged"/>
             <Label Text="Location Options" />
             <Picker x:Name="LocationSelection" 
                     Title="Location Options" 
@@ -34,15 +35,28 @@
                 </Picker.Items>    
             </Picker>
             <StackLayout IsVisible="False" x:Name="ZIPCodeEntries">
-                <Entry x:Name="ZipCodeEntry" Placeholder="ZIP Code" />
+                <Entry x:Name="ZipCodeEntry"
+                       Text="{Binding Item.ZipCode}"
+                       Placeholder="ZIP Code"
+                       PropertyChanged="ZipCodeEntry_PropertyChanged"/>
             </StackLayout>
             <StackLayout IsVisible="False" x:Name="CoordinatesEntries">
-                <Entry x:Name="LatitudeEntry" Placeholder="Latitude" />
-                <Entry x:Name="LongitudeEntry" Placeholder="Longitude" />
+                <Entry x:Name="LatitudeEntry"
+                       Text="{Binding Item.Latitude}"
+                       Placeholder="Latitude"
+                       PropertyChanged="LatitudeEntry_PropertyChanged"/>
+                <Entry x:Name="LongitudeEntry"
+                       Text="{Binding Item.Longitude}"
+                       Placeholder="Longitude"
+                       PropertyChanged="LongitudeEntry_PropertyChanged"/>
             </StackLayout>
             <StackLayout IsVisible="False" x:Name="CityCountryEntries">
-                <Entry x:Name="CityEntry" Placeholder="City" />
-                <Picker Title="Country" x:Name="CountryDropdowns" 
+                <Entry x:Name="CityEntry"
+                       Text="{Binding Item.City}"
+                       Placeholder="City"
+                       PropertyChanged="CityEntry_PropertyChanged"/>
+                <Picker Title="Country" x:Name="CountryDropdowns"
+                        SelectedIndexChanged="CountryDropdowns_SelectedIndexChanged"
                         ItemsSource="{Binding CountryNames}"
                         ItemDisplayBinding="{Binding Name}" />
             </StackLayout>

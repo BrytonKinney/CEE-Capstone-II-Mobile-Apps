@@ -119,6 +119,15 @@ namespace Shared.Constants
             public const string RSS_FEED_ENABLED = "enabled";
             public const string RSS_FEED_MAX_ARTICLES = "articlenum";
         }
+        public static class WeatherLocations
+        {
+            public const string WEATHER_LOCATION_TABLE = "weatherlocations";
+            public const string WEATHER_FEED_ID = "id";
+            public const string WEATHER_NAME = "name";
+            public const string WEATHER_ENABLED = "enabled";
+            public const string WEATHER_LOCATION_STRING = "locationstring";
+            public const string WEATHER_LOCATION_CODE = "locationcode";
+        }
     }
 
     public static class ViewConstants
