@@ -52,7 +52,7 @@ namespace CapstoneApp.Shared.Views
                 CoordinatesEntries.IsVisible = true; 
                 ZIPCodeEntries.IsVisible = false;
                 CityCountryEntries.IsVisible = false;
-                var location = GetLocation().ContinueWith(t => {
+                GetLocation().ContinueWith(t => {
                     if(t.IsCompleted)
                     {
                         Device.BeginInvokeOnMainThread(() =>
