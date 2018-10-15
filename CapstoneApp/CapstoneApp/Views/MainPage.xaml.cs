@@ -36,6 +36,9 @@ namespace CapstoneApp.Views
                     case (int)MenuItemType.Weather:
                         MenuPages.Add(id, new NavigationPage(new WeatherProviderPage()));
                         break;
+                    case (int)MenuItemType.Email:
+                        MenuPages.Add(id, new NavigationPage(new EmailPage()));
+                        break;
                 }
             }
 

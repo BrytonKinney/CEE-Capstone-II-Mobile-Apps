@@ -128,6 +128,13 @@ namespace Shared.Constants
             public const string WEATHER_LOCATION_STRING = "locationstring";
             public const string WEATHER_LOCATION_CODE = "locationcode";
         }
+        public static class Email
+        {
+            public const string EMAIL_TABLE = "emailtable";
+            public const string EMAIL_ID = "id";
+            public const string EMAIL_ADDRESS = "email";
+            public const string EMAIL_PASSWORD = "password";
+        }
     }
 
     public static class ViewConstants
