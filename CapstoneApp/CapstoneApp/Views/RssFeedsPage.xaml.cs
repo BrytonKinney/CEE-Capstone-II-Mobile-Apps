@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-using CapstoneApp.Models;
-using CapstoneApp.Views;
+﻿using CapstoneApp.Models;
 using CapstoneApp.ViewModels;
 using Shared.Constants;
+using System;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace CapstoneApp.Views
 {

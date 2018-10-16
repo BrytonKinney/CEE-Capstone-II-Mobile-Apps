@@ -1,13 +1,11 @@
-﻿using System;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-using CapstoneApp.Models;
+﻿using CapstoneApp.Models;
 using CapstoneApp.ViewModels;
-using Shared.Services.Interfaces;
 using LightInject;
 using Shared.Entities.RssFeed;
+using Shared.Services.Interfaces;
+using System;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace CapstoneApp.Views
 {

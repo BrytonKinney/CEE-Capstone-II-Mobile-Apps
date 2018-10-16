@@ -1,11 +1,5 @@
-﻿using System;
-
+﻿
 using CapstoneApp.Models;
-using Shared.Services.Interfaces;
-using LightInject;
-using System.Threading.Tasks;
-using Shared.Entities.RssFeed;
-using Xamarin.Forms;
 
 namespace CapstoneApp.ViewModels
 {

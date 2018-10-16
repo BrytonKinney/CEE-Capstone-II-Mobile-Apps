@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-using Xamarin.Forms;
-
-using CapstoneApp.Models;
-//using CapstoneApp.Services;
-
 namespace CapstoneApp.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged

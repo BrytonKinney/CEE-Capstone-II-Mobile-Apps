@@ -38,9 +38,9 @@ namespace Shared.Services.Implementations
             return await _connection.InsertOrReplaceAsync(item);
         }
 
-        public async Task<BaseEntity> GetAsync<BaseEntity>(int id) where BaseEntity : new()
+        public async Task<T> GetAsync<T>(int id) where T : new()
         {
-            return await _connection.GetAsync<BaseEntity>(id);
+            return await _connection.GetAsync<T>(id);
         }
     }
 }

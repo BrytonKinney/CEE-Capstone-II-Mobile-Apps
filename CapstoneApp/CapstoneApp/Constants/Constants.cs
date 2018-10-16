@@ -140,6 +140,7 @@ namespace Shared.Constants
     public static class ViewConstants
     {
         public const string RSS_FEEDS_TITLE = "RSS Feeds";
+        public const string NEW_WEATHER_LOCATION = "Add a New Weather Location";
     }
 
     public static class CommandConstants

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿using CapstoneApp.Models;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
-using CapstoneApp.Models;
 
 namespace CapstoneApp.Views
 {
