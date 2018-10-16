@@ -1,10 +1,6 @@
 ﻿using CapstoneApp.Shared.Models;
 using CapstoneApp.Shared.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -28,6 +24,7 @@ namespace CapstoneApp.Shared.Views
 
 			// Manually deselect item.
 			ItemsListView.SelectedItem = null;
+			await Navigation.PushModalAsync(new NavigationPage(new WeatherModelDetailsPage(item)));
 		}
 
 		async void AddItem_Clicked(object sender, EventArgs e)

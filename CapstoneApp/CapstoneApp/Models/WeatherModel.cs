@@ -1,8 +1,5 @@
 ﻿using CapstoneApp.Shared.Entities;
 using Shared.Constants;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CapstoneApp.Shared.Models
 {
