@@ -1,4 +1,9 @@
-﻿using CapstoneApp.Views;
+﻿using Android.Content;
+using CapstoneApp.Shared.Models;
+using CapstoneApp.Shared.Services.Implementations;
+using CapstoneApp.Shared.Services.Interfaces;
+using CapstoneApp.Shared.ViewModels;
+using CapstoneApp.Shared.Views;
 using Shared.Services.Implementations;
 using Shared.Services.Interfaces;
 using Xamarin.Forms;
@@ -16,6 +21,7 @@ namespace CapstoneApp
             Container.Register<IXmlRssFeedParser, XmlRssFeedParser>(new LightInject.PerContainerLifetime());
             Container.Register<IRssFeedReader, RssFeedReader>(new LightInject.PerContainerLifetime());
             Container.Register<IDatabaseProvider, DatabaseProvider>(new LightInject.PerContainerLifetime());
+            Container.Register<ISmartMirrorService, SmartMirrorService>(new LightInject.PerContainerLifetime());
         }
 
         public static LightInject.ServiceContainer Container
@@ -34,14 +40,11 @@ namespace CapstoneApp
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            MainPage = new DeviceListPage(new DevicesViewModel());
         }
 
         protected override void OnStart()
         {
-            
-            // Handle when your app starts
         }
 
         protected override void OnSleep()
