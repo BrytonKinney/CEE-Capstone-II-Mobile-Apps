@@ -2,12 +2,11 @@
 using CapstoneApp.Shared.Models;
 using CapstoneApp.Shared.ViewModels;
 using Plugin.Geolocator;
-using Shared.Constants;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using VC = Shared.Constants.ViewConstants;
+using VC = CapstoneApp.Shared.Constants.ViewConstants;
 
 namespace CapstoneApp.Shared.Views
 {

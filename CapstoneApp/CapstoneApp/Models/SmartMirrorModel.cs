@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CapstoneApp.Shared.Models
 {
-    public class SmartMirror
+    public class SmartMirrorModel
     {
         public string HostName { get; set; }
         public IPAddress IP { get; set; }

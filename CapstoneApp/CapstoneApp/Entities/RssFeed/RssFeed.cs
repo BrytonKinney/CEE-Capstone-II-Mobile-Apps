@@ -1,13 +1,14 @@
 ﻿using Newtonsoft.Json;
 using SQLite;
 using System.Collections.Generic;
-using DBC = Shared.Constants.DatabaseConstants;
-using JC = Shared.Constants.JsonSerializerAttributes.RssFeeds;
-using RC = Shared.Constants.DatabaseConstants.RSS;
+using CapstoneApp.Shared.Entities;
+using DBC = CapstoneApp.Shared.Constants.DatabaseConstants;
+using JC = CapstoneApp.Shared.Constants.JsonSerializerAttributes.RssFeeds;
+using RC = CapstoneApp.Shared.Constants.DatabaseConstants.RSS;
 namespace Shared.Entities.RssFeed
 {
     [Table(RC.RSS_FEED_TABLE)]
-    public class RssFeed
+    public class RssFeed : BaseEntity
     {
         #region Constructor(s)
 
@@ -26,9 +27,9 @@ namespace Shared.Entities.RssFeed
 
         #region Properties
 
-        [Column(DBC.ID)]
-        [PrimaryKey, AutoIncrement, Indexed]
-        public int? Id { get; set; }
+        //[Column(DBC.ID)]
+        //[PrimaryKey, AutoIncrement, Indexed]
+        //public int? Id { get; set; }
 
         /// <summary>
         /// A read-only property to access the feed's url.

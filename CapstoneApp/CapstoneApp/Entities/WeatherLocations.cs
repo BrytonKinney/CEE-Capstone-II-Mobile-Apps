@@ -1,10 +1,10 @@
-﻿using CapstoneApp.Shared.Models;
-using Shared.Constants;
+﻿using CapstoneApp.Shared.Constants;
+using CapstoneApp.Shared.Models;
 
 namespace CapstoneApp.Shared.Entities
 {
     [SQLite.Table(DatabaseConstants.WeatherLocations.WEATHER_LOCATION_TABLE)]
-    public class WeatherLocations
+    public class WeatherLocations : BaseEntity
     {
         public WeatherLocations() { }
         public WeatherLocations(WeatherModel model)
@@ -20,9 +20,9 @@ namespace CapstoneApp.Shared.Entities
             Enabled = model.Enabled ? 1 : 0;
         }
 
-        [SQLite.Column(DatabaseConstants.ID)]
-        [SQLite.PrimaryKey, SQLite.AutoIncrement, SQLite.Indexed]
-        public int? Id { get; set; }
+        //[SQLite.Column(DatabaseConstants.ID)]
+        //[SQLite.PrimaryKey, SQLite.AutoIncrement, SQLite.Indexed]
+        //public int? Id { get; set; }
 
         [SQLite.Column(DatabaseConstants.WeatherLocations.WEATHER_NAME)]
         public string Name { get; set; }

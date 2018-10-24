@@ -1,7 +1,6 @@
 ﻿using CapstoneApp.Models;
 using CapstoneApp.Views;
 using LightInject;
-using Shared.Constants;
 using Shared.Entities.RssFeed;
 using Shared.Services.Interfaces;
 using System;
@@ -10,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using CapstoneApp.Shared.Constants;
 using Xamarin.Forms;
 
 namespace CapstoneApp.ViewModels
@@ -57,19 +57,21 @@ namespace CapstoneApp.ViewModels
         async Task LoadRSSFeeds()
         {
             _feedReader = App.Container.GetInstance<IRssFeedReader>();
-            var db = _dbDriver.GetConnection();
-            var rssFeeds = await db.Table<RssFeed>().ToListAsync();
+            var db = _dbDriver;
+            var rssFeeds = await db.GetConnection().Table<RssFeed>().ToListAsync();
+            //db.GetConnection().DeleteAll<RssFeed>();
+            //db.GetConnection().Commit();
             List<string> rssFeedUrls = new List<string>();
-            if(rssFeeds.Count == 0 || !rssFeeds.Any(f => DefaultRssFeedUrls.GetAll().ToList().Contains(f.FeedUrl)))
+            if(rssFeeds.Count == 0) //|| !rssFeeds.Any(f => DefaultRssFeedUrls.GetAll().ToList().Contains(f.FeedUrl)))
                 rssFeedUrls = DefaultRssFeedUrls.GetAll().ToList();
             else
-                rssFeedUrls.AddRange(rssFeeds.Select(rss => rss.FeedUrl).ToList());
+                rssFeedUrls = rssFeeds.Select(rss => rss.FeedUrl).ToList();
             foreach(var feedUrl in rssFeedUrls)
             {
                 RssFeed feed = new RssFeed(feedUrl);
                 await _feedReader.GetFeedArticles(feed).ContinueWith(async (t) =>
                 {
-                    await db.InsertOrReplaceAsync(feed);
+                    await db.AddOrUpdateAsync(feed);
                     if(t.IsCompleted && !t.IsFaulted)
                         Items.Add(new RssFeedModel(feed));
                 });

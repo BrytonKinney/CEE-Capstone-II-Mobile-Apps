@@ -6,6 +6,8 @@ namespace CapstoneApp.Shared.Services.Interfaces
 {
     public interface ISmartMirrorService
     {
-        Task<List<SmartMirror>> SearchForSmartMirrors();
+        Task<List<SmartMirrorModel>> SearchForSmartMirrors();
+        void SetInstance(SmartMirrorModel sm);
+        SmartMirrorModel GetInstance();
     }
 }

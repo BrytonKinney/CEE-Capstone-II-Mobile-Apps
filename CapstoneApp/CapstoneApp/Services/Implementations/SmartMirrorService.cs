@@ -15,9 +15,11 @@ namespace CapstoneApp.Shared.Services.Implementations
 {
     public class SmartMirrorService : ISmartMirrorService
     {
-        public async Task<List<SmartMirror>> SearchForSmartMirrors()
+        private static SmartMirrorModel _smartMirror;
+
+        public async Task<List<SmartMirrorModel>> SearchForSmartMirrors()
         {
-            List<SmartMirror> mirrors = new List<SmartMirror>();
+            List<SmartMirrorModel> mirrors = new List<SmartMirrorModel>();
             WifiManager wifi = (WifiManager) Android.App.Application.Context.GetSystemService(Context.WifiService);
             var wifiLock = wifi.CreateMulticastLock("Zeroconf lock");
             try
@@ -29,7 +31,7 @@ namespace CapstoneApp.Shared.Services.Implementations
                 {
                     if (domain.DisplayName.Contains("smartmirror"))
                     {
-                        mirrors.Add(new SmartMirror()
+                        mirrors.Add(new SmartMirrorModel()
                         {
                             HostName = domain.DisplayName,
                             IP = IPAddress.Parse(domain.IPAddress)
@@ -46,6 +48,16 @@ namespace CapstoneApp.Shared.Services.Implementations
                 wifiLock.Release();
             }
             return mirrors;
+        }
+
+        public void SetInstance(SmartMirrorModel sm)
+        {
+            _smartMirror = sm;
+        }
+
+        public SmartMirrorModel GetInstance()
+        {
+            return _smartMirror;
         }
     }
 }

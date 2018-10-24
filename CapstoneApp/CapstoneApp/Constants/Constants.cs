@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace Shared.Constants
+namespace CapstoneApp.Shared.Constants
 {
     /// <summary>
     /// Standard XML node types for RSS feeds
@@ -42,6 +42,14 @@ namespace Shared.Constants
             public const string Description = "Description";
             public const string Articles = "Articles";
             public const string MaxArticles = "MaxArticles";
+        }
+
+        public static class MirrorConfiguration
+        {
+            public const string HostName = "HostName";
+            public const string IpAddress = "IpAddress";
+            public const string RssFeeds = "RssFeeds";
+            public const string WeatherLocations = "WeatherLocations";
         }
     }
 
@@ -109,6 +117,14 @@ namespace Shared.Constants
         public const string DATABASE_FILE_NAME = "capstone_app_settings.db";
         public static string DATABASE_FILE_LOCATION = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DATABASE_FILE_NAME);
         public const string ID = "id";
+
+        public static class Mirror
+        {
+            public const string MIRROR_TABLE = "mirror";
+            public const string IP_ADDR = "ipaddress";
+            public const string HOSTNAME = "hostname";
+        }
+
         public static class RSS
         {
             public const string RSS_FEED_TABLE = "rssfeeds";

@@ -40,7 +40,7 @@ namespace CapstoneApp
         public App()
         {
             InitializeComponent();
-            MainPage = new DeviceListPage(new DevicesViewModel());
+            MainPage = new NavigationPage(new DeviceListPage());
         }
 
         protected override void OnStart()

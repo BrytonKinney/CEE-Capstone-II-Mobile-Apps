@@ -1,6 +1,5 @@
 ﻿using CapstoneApp.Models;
 using CapstoneApp.ViewModels;
-using Shared.Constants;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,7 +15,7 @@ namespace CapstoneApp.Views
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new RssFeedViewModel(CommandConstants.VIEWS.RssFeeds);
+            BindingContext = viewModel = new RssFeedViewModel(Shared.Constants.CommandConstants.VIEWS.RssFeeds);
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

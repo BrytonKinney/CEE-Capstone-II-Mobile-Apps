@@ -1,6 +1,5 @@
 ﻿using CapstoneApp.Shared.Constants;
 using CapstoneApp.ViewModels;
-using Shared.Constants;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;

@@ -15,19 +15,21 @@ using Xamarin.Forms;
 using LightInject;
 using Zeroconf;
 using System.Reactive.Linq;
+using CapstoneApp.Shared.Entities;
 
 namespace CapstoneApp.Shared.ViewModels
 {
     public class DevicesViewModel : BaseViewModel
     {
         public Command LoadItemsCommand { get; set; }
-        public ObservableCollection<SmartMirror> DiscoveredDevices { get; private set; }
+        public ObservableCollection<SmartMirrorModel> DiscoveredDevices { get; private set; }
         public ISmartMirrorService _smService;
         public DevicesViewModel()
         {
-            DiscoveredDevices = new ObservableCollection<SmartMirror>();
+            DiscoveredDevices = new ObservableCollection<SmartMirrorModel>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             _smService = App.Container.GetInstance<ISmartMirrorService>();
+            LoadItemsCommand.Execute(null);
         }
 
         async Task ExecuteLoadItemsCommand()
