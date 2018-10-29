@@ -14,12 +14,12 @@ namespace CapstoneApp.Shared.Views
 	public partial class NewWeatherLocationPage : ContentPage
 	{
 		public WeatherModel Item = new WeatherModel();
-		public WeatherLocationDetailsPage viewModel;
+		public WeatherLocationDetailsViewModel viewModel;
 		public NewWeatherLocationPage ()
 		{
 			InitializeComponent ();
 			Title = VC.NEW_WEATHER_LOCATION;
-			BindingContext = viewModel = new WeatherLocationDetailsPage();
+			BindingContext = viewModel = new WeatherLocationDetailsViewModel();
 		}
 		async void Save_Clicked(object sender, EventArgs e)
 		{

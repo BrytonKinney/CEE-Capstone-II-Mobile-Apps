@@ -1,5 +1,6 @@
 ﻿using CapstoneApp.Shared.Entities;
 using CapstoneApp.Shared.Models;
+using CapstoneApp.Shared.Views;
 using CapstoneApp.ViewModels;
 using LightInject;
 using Shared.Services.Interfaces;
@@ -27,9 +28,7 @@ namespace CapstoneApp.Shared.ViewModels
                 IsCityCountryVisible = true;
             if(!string.IsNullOrWhiteSpace(item.Latitude))
                 IsCoordsVisible = true;
-            MessagingCenter.Subscribe<WeatherLocationDetailsPage, WeatherModel>(this, "SaveWeatherChanges", async (obj, itemRec) => { 
-                await _dbDriver.AddOrUpdateAsync(new WeatherLocations(itemRec));
-            });
+            MessagingCenter.Subscribe<WeatherModelDetailsPage, WeatherModel>(this, "SaveWeatherChanges", async (obj, itemRec) => await SaveEntity(new WeatherLocations(itemRec)));
         }
     }
 }

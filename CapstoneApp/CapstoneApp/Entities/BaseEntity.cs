@@ -9,6 +9,6 @@ namespace CapstoneApp.Shared.Entities
     {
         [SQLite.Column(DatabaseConstants.ID)]
         [SQLite.AutoIncrement, SQLite.PrimaryKey, SQLite.Indexed]
-        public int Id { get; set; }
+        public int? Id { get; set; }
     }
 }

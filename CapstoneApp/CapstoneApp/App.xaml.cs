@@ -4,6 +4,7 @@ using CapstoneApp.Shared.Services.Implementations;
 using CapstoneApp.Shared.Services.Interfaces;
 using CapstoneApp.Shared.ViewModels;
 using CapstoneApp.Shared.Views;
+using CapstoneApp.Views;
 using Shared.Services.Implementations;
 using Shared.Services.Interfaces;
 using Xamarin.Forms;
@@ -18,6 +19,8 @@ namespace CapstoneApp
         
         private static void RegisterServices()
         {
+            Container.Register<IMessagingService, MessagingService>(new LightInject.PerContainerLifetime());
+            Container.Register<IEventHandler, EventHandler>(new LightInject.PerContainerLifetime());
             Container.Register<IXmlRssFeedParser, XmlRssFeedParser>(new LightInject.PerContainerLifetime());
             Container.Register<IRssFeedReader, RssFeedReader>(new LightInject.PerContainerLifetime());
             Container.Register<IDatabaseProvider, DatabaseProvider>(new LightInject.PerContainerLifetime());
@@ -40,7 +43,7 @@ namespace CapstoneApp
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new DeviceListPage());
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()

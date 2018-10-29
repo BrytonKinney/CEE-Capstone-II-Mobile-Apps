@@ -17,6 +17,7 @@ namespace CapstoneApp.Views
 
             menuItems = new List<HomeMenuItem>
             {
+                new HomeMenuItem {Id = MenuItemType.Devices, Title = "Smart Mirrors" },
                 new HomeMenuItem {Id = MenuItemType.RssFeeds, Title="RSS Feeds" },
                 new HomeMenuItem {Id = MenuItemType.Weather, Title="Weather Services" },
                 new HomeMenuItem {Id = MenuItemType.About, Title="About" }

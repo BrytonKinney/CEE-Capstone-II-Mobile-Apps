@@ -4,6 +4,7 @@ using LightInject;
 using Shared.Entities.RssFeed;
 using Shared.Services.Interfaces;
 using System;
+using CapstoneApp.Shared.Entities.RssFeed;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -37,22 +38,12 @@ namespace CapstoneApp.Views
 
         private void saveChangesBtn_Clicked(object sender, EventArgs e)
         {
-            new Command(async () => {
-                var db = App.Container.GetInstance<IDatabaseProvider>();
-                RssFeedModel item = viewModel.Item;
-                int id = Convert.ToInt32(item.Id);
-                var rssFeed = await db.GetConnection().Table<RssFeed>().Where(r => r.Id == id).FirstOrDefaultAsync();
-                if(rssFeed != null)
-                {
-                    rssFeed.Enabled = item.Enabled ? 1 : 0;
-                }
-                await db.AddOrUpdateAsync(rssFeed);
-                Device.BeginInvokeOnMainThread(async () => 
-                {
-                    await Application.Current.MainPage.DisplayAlert("Saved changes", "RSS Feed Settings saved.", "OK");
-                    await Navigation.PopAsync();
-                });
-            }).Execute(null);
+            MessagingCenter.Send(this, "SaveRssFeed", viewModel.Item);
+        }
+
+        private void MenuItem_OnClicked(object sender, EventArgs e)
+        {
+            MessagingCenter.Send(this, "DeleteRssFeed", viewModel.Item);
         }
     }
 }

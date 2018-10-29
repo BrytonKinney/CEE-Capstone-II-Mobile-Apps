@@ -20,10 +20,6 @@ namespace CapstoneApp.Shared.Entities
             Enabled = model.Enabled ? 1 : 0;
         }
 
-        //[SQLite.Column(DatabaseConstants.ID)]
-        //[SQLite.PrimaryKey, SQLite.AutoIncrement, SQLite.Indexed]
-        //public int? Id { get; set; }
-
         [SQLite.Column(DatabaseConstants.WeatherLocations.WEATHER_NAME)]
         public string Name { get; set; }
 

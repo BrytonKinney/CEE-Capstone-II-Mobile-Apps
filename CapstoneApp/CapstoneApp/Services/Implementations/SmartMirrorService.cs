@@ -16,6 +16,7 @@ namespace CapstoneApp.Shared.Services.Implementations
     public class SmartMirrorService : ISmartMirrorService
     {
         private static SmartMirrorModel _smartMirror;
+        private static readonly object _lock = new object();
 
         public async Task<List<SmartMirrorModel>> SearchForSmartMirrors()
         {
@@ -52,12 +53,18 @@ namespace CapstoneApp.Shared.Services.Implementations
 
         public void SetInstance(SmartMirrorModel sm)
         {
-            _smartMirror = sm;
+            lock (_lock)
+            {
+                _smartMirror = sm;
+            }
         }
 
         public SmartMirrorModel GetInstance()
         {
-            return _smartMirror;
+            lock (_lock)
+            {
+                return _smartMirror;
+            }
         }
     }
 }

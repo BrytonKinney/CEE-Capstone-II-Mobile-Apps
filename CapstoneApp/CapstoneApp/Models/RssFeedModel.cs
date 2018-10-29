@@ -1,5 +1,6 @@
 ﻿using Shared.Entities.RssFeed;
 using System;
+using CapstoneApp.Shared.Entities.RssFeed;
 
 namespace CapstoneApp.Models
 {

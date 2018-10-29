@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
+using CapstoneApp.Shared.Entities.RssFeed;
 
 namespace Shared.Services.Implementations
 {

@@ -1,4 +1,5 @@
-﻿using Shared.Entities.RssFeed;
+﻿using CapstoneApp.Shared.Entities.RssFeed;
+using Shared.Entities.RssFeed;
 
 namespace Shared.Services.Interfaces
 {

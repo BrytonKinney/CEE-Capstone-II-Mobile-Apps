@@ -21,10 +21,10 @@ namespace CapstoneApp.Shared.Views
 				return;
 			App.Container.GetInstance<ISmartMirrorService>().SetInstance(item);
 			deviceListView.SelectedItem = null;
-            SmartMirror selectedMirror = new SmartMirror(item);
-		    var _db = App.Container.GetInstance<IDatabaseProvider>();
-		    await _db.AddOrUpdateAsync(selectedMirror);
-		    await Navigation.PushAsync(new RssFeedsPage());
+			SmartMirror selectedMirror = new SmartMirror(item);
+			var _db = App.Container.GetInstance<IDatabaseProvider>();
+			await _db.AddOrUpdateAsync(selectedMirror);
+			await Navigation.PushAsync(new RssFeedsPage());
 		}
 
 		public DeviceListPage()

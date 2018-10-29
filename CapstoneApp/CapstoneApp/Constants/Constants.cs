@@ -6,6 +6,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using CapstoneApp.Shared.Entities;
 
 namespace CapstoneApp.Shared.Constants
 {
@@ -46,6 +47,8 @@ namespace CapstoneApp.Shared.Constants
 
         public static class MirrorConfiguration
         {
+            public const string Mirror = "Mirror";
+            public const string Config = "Cfg";
             public const string HostName = "HostName";
             public const string IpAddress = "IpAddress";
             public const string RssFeeds = "RssFeeds";
@@ -53,6 +56,20 @@ namespace CapstoneApp.Shared.Constants
         }
     }
 
+    public static class DefaultQuadrantSettings
+    {
+        public static QuadrantSettings[] Defaults =
+        {
+            new QuadrantSettings()
+            {
+                ItemType = QuadrantConstants.ItemTypes.RSS_FEEDS, Quadrant = QuadrantConstants.Q1
+            },
+            new QuadrantSettings()
+            {
+                ItemType = QuadrantConstants.ItemTypes.WEATHER_LOCATIONS, Quadrant = QuadrantConstants.Q2
+            }
+        };
+    }
     /// <summary>
     /// The URLs for RSS feeds that will be listed by default
     /// </summary>
@@ -125,6 +142,12 @@ namespace CapstoneApp.Shared.Constants
             public const string HOSTNAME = "hostname";
         }
 
+        public static class Quadrant
+        {
+            public const string ITEM_TYPE = "itemtype";
+            public const string QUADRANT = "quadrant";
+            public const string QUAD_TABLE = "quadrants";
+        }
         public static class RSS
         {
             public const string RSS_FEED_TABLE = "rssfeeds";
@@ -158,5 +181,21 @@ namespace CapstoneApp.Shared.Constants
         {
             RssFeeds
         };
+    }
+
+    public static class QuadrantConstants
+    {
+        public static class ItemTypes
+        {
+            public const string RSS_FEEDS = "rss";
+            public const string WEATHER_LOCATIONS = "weather";
+            public const string EMAIL = "email";
+        }
+
+        public const int Q1 = 1;
+        public const int Q2 = 2;
+        public const int Q3 = 3;
+        public const int Q4 = 4;
+        public const int Q5 = 5;
     }
 }
