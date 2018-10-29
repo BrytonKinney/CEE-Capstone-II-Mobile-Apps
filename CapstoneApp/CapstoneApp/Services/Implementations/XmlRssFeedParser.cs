@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-using RXC = Shared.Constants.RssXmlConstants;
+using CapstoneApp.Shared.Entities.RssFeed;
+using RXC = CapstoneApp.Shared.Constants.RssXmlConstants;
 namespace Shared.Services.Implementations
 {
     public class XmlRssFeedParser : IXmlRssFeedParser

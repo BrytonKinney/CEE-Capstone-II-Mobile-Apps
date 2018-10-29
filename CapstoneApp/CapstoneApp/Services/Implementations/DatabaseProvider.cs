@@ -3,13 +3,23 @@ using Shared.Entities.RssFeed;
 using Shared.Services.Interfaces;
 using SQLite;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
-using DBC = Shared.Constants.DatabaseConstants;
+using CapstoneApp;
+using CapstoneApp.Shared.AppEvents;
+using CapstoneApp.Shared.Entities.RssFeed;
+using CapstoneApp.Shared.Services.Interfaces;
+using LightInject;
+using DBC = CapstoneApp.Shared.Constants.DatabaseConstants;
 namespace Shared.Services.Implementations
 {
     public class DatabaseProvider : IDatabaseProvider
     {
         private readonly SQLite.SQLiteAsyncConnection _connection;
+        
+        
         public DatabaseProvider()
         {
             _connection = new SQLiteAsyncConnection(DBC.DATABASE_FILE_LOCATION);
@@ -20,8 +30,7 @@ namespace Shared.Services.Implementations
         {
             try
             {
-                await _connection.CreateTableAsync<RssFeed>();
-                await _connection.CreateTableAsync<WeatherLocations>();
+                await _connection.CreateTablesAsync<RssFeed, WeatherLocations, SmartMirror, QuadrantSettings>();
             }
             catch (Exception ex)
             {
@@ -33,6 +42,7 @@ namespace Shared.Services.Implementations
         {
             return _connection;
         }
+
         public async Task<int> AddOrUpdateAsync<T>(T item)
         {
             return await _connection.InsertOrReplaceAsync(item);
@@ -41,6 +51,11 @@ namespace Shared.Services.Implementations
         public async Task<T> GetAsync<T>(int id) where T : new()
         {
             return await _connection.GetAsync<T>(id);
+        }
+
+        public async Task<int> DeleteAsync<T>(T item)
+        {
+            return await _connection.DeleteAsync(item);
         }
     }
 }

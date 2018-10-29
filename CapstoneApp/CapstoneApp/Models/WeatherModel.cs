@@ -1,5 +1,5 @@
 ﻿using CapstoneApp.Shared.Entities;
-using Shared.Constants;
+using CapstoneApp.Shared.Constants;
 
 namespace CapstoneApp.Shared.Models
 {

@@ -1,7 +1,6 @@
 ﻿using CapstoneApp.Models;
 using CapstoneApp.Views;
 using LightInject;
-using Shared.Constants;
 using Shared.Entities.RssFeed;
 using Shared.Services.Interfaces;
 using System;
@@ -10,7 +9,10 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using CapstoneApp.Shared.Constants;
+using CapstoneApp.Shared.Entities.RssFeed;
 using Xamarin.Forms;
+
 
 namespace CapstoneApp.ViewModels
 {
@@ -36,6 +38,7 @@ namespace CapstoneApp.ViewModels
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             MessagingCenter.Subscribe<NewItemPage, RssFeedModel>(this, "AddRssFeed", async (obj, item) => await AddFeedAsync(obj, item));
+            LoadItemsCommand.Execute(null);
         }
 
         async Task AddFeedAsync(NewItemPage obj, RssFeedModel item)
@@ -48,7 +51,7 @@ namespace CapstoneApp.ViewModels
                     Device.BeginInvokeOnMainThread(async () => await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Error", "There was an issue adding the RSS feed.", "OK"));
                 else
                 {
-                    await _dbDriver.AddOrUpdateAsync(newFeed);
+                    await SaveEntity(newFeed);
                     Items.Add(new RssFeedModel(newFeed));
                 }
             });
@@ -57,22 +60,32 @@ namespace CapstoneApp.ViewModels
         async Task LoadRSSFeeds()
         {
             _feedReader = App.Container.GetInstance<IRssFeedReader>();
-            var db = _dbDriver.GetConnection();
-            var rssFeeds = await db.Table<RssFeed>().ToListAsync();
-            List<string> rssFeedUrls = new List<string>();
-            if(rssFeeds.Count == 0 || !rssFeeds.Any(f => DefaultRssFeedUrls.GetAll().ToList().Contains(f.FeedUrl)))
-                rssFeedUrls = DefaultRssFeedUrls.GetAll().ToList();
-            else
-                rssFeedUrls.AddRange(rssFeeds.Select(rss => rss.FeedUrl).ToList());
-            foreach(var feedUrl in rssFeedUrls)
+            var db = _dbDriver;
+            var rssFeeds = await db.GetConnection().Table<RssFeed>().ToListAsync();
+            List<string> feedUrls = new List<string>();
+
+            if (rssFeeds.Count == 0)
             {
-                RssFeed feed = new RssFeed(feedUrl);
-                await _feedReader.GetFeedArticles(feed).ContinueWith(async (t) =>
+                feedUrls = DefaultRssFeedUrls.GetAll().ToList();
+                foreach (var feedUrl in feedUrls)
                 {
-                    await db.InsertOrReplaceAsync(feed);
-                    if(t.IsCompleted && !t.IsFaulted)
-                        Items.Add(new RssFeedModel(feed));
-                });
+                    RssFeed feed = new RssFeed(feedUrl);
+                    await _feedReader.GetFeedArticles(feed).ContinueWith(async (t) =>
+                    {
+                        if (rssFeeds.All(rss => rss.FeedUrl != feedUrl))
+                            await db.AddOrUpdateAsync(feed);
+                        if (t.IsCompleted && !t.IsFaulted)
+                            Items.Add(new RssFeedModel(feed));
+                    });
+                }
+            }
+            else
+            {
+                //feedUrls = rssFeeds.Select(rss => rss.FeedUrl).Distinct().ToList();
+                foreach (var feed in rssFeeds)
+                {
+                    Items.Add(new RssFeedModel(feed));
+                }
             }
         }
 

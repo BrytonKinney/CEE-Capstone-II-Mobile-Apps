@@ -6,6 +6,7 @@ namespace CapstoneApp.Models
 {
     public enum MenuItemType
     {
+        Devices,
         RssFeeds,
         About,
         Weather,

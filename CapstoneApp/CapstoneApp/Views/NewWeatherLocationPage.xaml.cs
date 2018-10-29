@@ -2,12 +2,11 @@
 using CapstoneApp.Shared.Models;
 using CapstoneApp.Shared.ViewModels;
 using Plugin.Geolocator;
-using Shared.Constants;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using VC = Shared.Constants.ViewConstants;
+using VC = CapstoneApp.Shared.Constants.ViewConstants;
 
 namespace CapstoneApp.Shared.Views
 {
@@ -15,12 +14,12 @@ namespace CapstoneApp.Shared.Views
 	public partial class NewWeatherLocationPage : ContentPage
 	{
 		public WeatherModel Item = new WeatherModel();
-		public WeatherLocationDetailsPage viewModel;
+		public WeatherLocationDetailsViewModel viewModel;
 		public NewWeatherLocationPage ()
 		{
 			InitializeComponent ();
 			Title = VC.NEW_WEATHER_LOCATION;
-			BindingContext = viewModel = new WeatherLocationDetailsPage();
+			BindingContext = viewModel = new WeatherLocationDetailsViewModel();
 		}
 		async void Save_Clicked(object sender, EventArgs e)
 		{

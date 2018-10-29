@@ -26,6 +26,9 @@ namespace CapstoneApp.Views
             {
                 switch (id)
                 {
+                    case (int)MenuItemType.Devices:
+                        MenuPages.Add(id, new NavigationPage(new DeviceListPage()));
+                        break;
                     case (int)MenuItemType.RssFeeds:
                         MenuPages.Add(id, new NavigationPage(new RssFeedsPage()));
                         break;
