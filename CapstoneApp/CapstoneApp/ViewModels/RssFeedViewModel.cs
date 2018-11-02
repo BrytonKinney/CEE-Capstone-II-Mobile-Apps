@@ -51,7 +51,7 @@ namespace CapstoneApp.ViewModels
                     Device.BeginInvokeOnMainThread(async () => await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Error", "There was an issue adding the RSS feed.", "OK"));
                 else
                 {
-                    await SaveEntity(newFeed);
+                    await SaveEntity(newFeed, obj);
                     Items.Add(new RssFeedModel(newFeed));
                 }
             });

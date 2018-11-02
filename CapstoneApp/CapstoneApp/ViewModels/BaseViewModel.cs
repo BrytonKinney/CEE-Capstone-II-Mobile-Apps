@@ -12,6 +12,7 @@ using CapstoneApp.Shared.Services.Interfaces;
 using LightInject;
 using Shared.Entities.RssFeed;
 using Shared.Services.Interfaces;
+using Xamarin.Forms;
 
 namespace CapstoneApp.ViewModels
 {
@@ -20,12 +21,30 @@ namespace CapstoneApp.ViewModels
         public event EventHandler<ConfigurationEventArgs> SettingsChanged;
         private IEventHandler _handler;
         private IDatabaseProvider _dbProvider;
-
-
+        private object dbLock = new object();
+        public IDatabaseProvider DbProvider
+        {
+            get
+            {
+                lock (dbLock)
+                {
+                    if (_dbProvider == null)
+                        _dbProvider = App.Container.GetInstance<IDatabaseProvider>();
+                    return _dbProvider;
+                }
+            }
+            set
+            {
+                lock (dbLock)
+                {
+                    _dbProvider = value;
+                }
+            }
+        }
         public BaseViewModel()
         {
             _handler = App.Container.GetInstance<IEventHandler>();
-            _dbProvider = App.Container.GetInstance<IDatabaseProvider>();
+            DbProvider = App.Container.GetInstance<IDatabaseProvider>();
             SettingsChanged = _handler.CaptureEvent;
         }
         //public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
@@ -37,21 +56,21 @@ namespace CapstoneApp.ViewModels
             set { SetProperty(ref isBusy, value); }
         }
 
-        protected virtual async Task SaveEntity(BaseEntity entity)
+        protected virtual async Task SaveEntity(BaseEntity entity, ContentPage sendingPage)
         {
             await _dbProvider.AddOrUpdateAsync(entity);
-            OnSettingsChanged();
+            OnSettingsChanged(sendingPage);
         }
-        protected virtual async void OnSettingsChanged()
+        protected virtual async void OnSettingsChanged(ContentPage sendingPage)
         {
             try
             {
                 if (SettingsChanged != null)
                 {
-                    var mirror = await _dbProvider.GetConnection().Table<SmartMirror>().FirstOrDefaultAsync();
-                    var feeds = _dbProvider.GetConnection().Table<RssFeed>().Where(rss => rss.Enabled == 1);
-                    var weatherLocations = _dbProvider.GetConnection().Table<WeatherLocations>().Where(weather => weather.Enabled == 1);
-                    var quadrants = await _dbProvider.GetConnection().Table<QuadrantSettings>().ToListAsync();
+                    var mirror = await DbProvider.GetConnection().Table<SmartMirror>().FirstOrDefaultAsync();
+                    var feeds = DbProvider.GetConnection().Table<RssFeed>().Where(rss => rss.Enabled == 1);
+                    var weatherLocations = DbProvider.GetConnection().Table<WeatherLocations>().Where(weather => weather.Enabled == 1);
+                    var quadrants = await DbProvider.GetConnection().Table<QuadrantSettings>().ToListAsync();
 
                     if (quadrants.Count == 0)
                         quadrants = CapstoneApp.Shared.Constants.DefaultQuadrantSettings.Defaults.ToList();
@@ -64,7 +83,7 @@ namespace CapstoneApp.ViewModels
                         Configuration = quadrants
                     };
                     var settingsChanged = SettingsChanged;
-                    settingsChanged.Invoke(this, new ConfigurationEventArgs(config));
+                    settingsChanged.Invoke(this, new ConfigurationEventArgs(config, sendingPage));
                 }
             }
             catch (Exception ex)

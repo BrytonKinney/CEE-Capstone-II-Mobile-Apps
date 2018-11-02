@@ -28,7 +28,7 @@ namespace CapstoneApp.Shared.ViewModels
                 IsCityCountryVisible = true;
             if(!string.IsNullOrWhiteSpace(item.Latitude))
                 IsCoordsVisible = true;
-            MessagingCenter.Subscribe<WeatherModelDetailsPage, WeatherModel>(this, "SaveWeatherChanges", async (obj, itemRec) => await SaveEntity(new WeatherLocations(itemRec)));
+            MessagingCenter.Subscribe<WeatherModelDetailsPage, WeatherModel>(this, "SaveWeatherChanges", async (obj, itemRec) => await SaveEntity(new WeatherLocations(itemRec), obj));
         }
     }
 }

@@ -25,6 +25,7 @@ namespace CapstoneApp.Shared.Views
 			var _db = App.Container.GetInstance<IDatabaseProvider>();
 			await _db.AddOrUpdateAsync(selectedMirror);
 			await Navigation.PushAsync(new RssFeedsPage());
+		    MessagingCenter.Send(this, "MirrorSelected", selectedMirror);
 		}
 
 		public DeviceListPage()

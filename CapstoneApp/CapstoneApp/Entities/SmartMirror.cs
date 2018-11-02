@@ -31,5 +31,8 @@ namespace CapstoneApp.Shared.Entities
         [JsonProperty(PropertyName = Constants.JsonSerializerAttributes.MirrorConfiguration.HostName)]
         [SQLite.Column(Constants.DatabaseConstants.Mirror.HOSTNAME)]
         public string HostName { get; set; }
+
+        [SQLite.Column(Constants.DatabaseConstants.Mirror.IS_SELECTED)]
+        public int IsSelected { get; set; }
     }
 }
