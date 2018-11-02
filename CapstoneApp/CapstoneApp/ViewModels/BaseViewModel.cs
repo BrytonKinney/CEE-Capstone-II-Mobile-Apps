@@ -47,7 +47,6 @@ namespace CapstoneApp.ViewModels
             DbProvider = App.Container.GetInstance<IDatabaseProvider>();
             SettingsChanged = _handler.CaptureEvent;
         }
-        //public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
         
         bool isBusy = false;
         public bool IsBusy

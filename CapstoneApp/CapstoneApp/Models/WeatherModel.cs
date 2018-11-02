@@ -5,9 +5,11 @@ namespace CapstoneApp.Shared.Models
 {
     public class WeatherModel
     {
+        public int? Id { get; set; }
         public WeatherModel() {}
         public WeatherModel(WeatherLocations loc)
         {
+            Id = loc.Id;
             Name = loc.Name;
             Enabled = loc.Enabled == 1;
             if(loc.LocationCode == WeatherSettings.Location.CityCountry)

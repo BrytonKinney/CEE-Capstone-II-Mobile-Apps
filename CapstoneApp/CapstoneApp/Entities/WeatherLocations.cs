@@ -9,6 +9,7 @@ namespace CapstoneApp.Shared.Entities
         public WeatherLocations() { }
         public WeatherLocations(WeatherModel model)
         {
+            Id = model.Id;
             Name = model.Name;
             if(model.LocationProvider == WeatherSettings.Location.CityCountry)
                 LocationString = $"{model.City},{model.CountryCode}";
