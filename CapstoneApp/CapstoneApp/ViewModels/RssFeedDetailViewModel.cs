@@ -20,12 +20,18 @@ namespace CapstoneApp.ViewModels
             MessagingCenter.Subscribe<RssFeedDetailPage, RssFeedModel>(this, "SaveRssFeed",
                 async (page, model) =>
                 {
-                    await SaveEntity(new RssFeed(model));
-                    Device.BeginInvokeOnMainThread(async () =>
+                    await SaveEntity(new RssFeed(model), page).ContinueWith(async (t) =>
                     {
-                        await Application.Current.MainPage.DisplayAlert("Saved changes", "RSS Feed Settings saved.", "OK");
+                        if (t.IsCompleted)
+                        {
+                            Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                await Application.Current.MainPage.DisplayAlert("Saved changes", "RSS Feed Settings saved.", "OK");
+                                await page.Navigation.PopAsync();
+                            });
+                            
+                        }
                     });
-                    await page.Navigation.PopAsync();
                 });
             MessagingCenter.Subscribe<RssFeedDetailPage, RssFeedModel>(this, "DeleteRssFeed", async (page, model) =>
             {

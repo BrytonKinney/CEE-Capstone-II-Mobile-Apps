@@ -139,6 +139,7 @@ namespace CapstoneApp.Shared.Constants
         {
             public const string MIRROR_TABLE = "mirror";
             public const string IP_ADDR = "ipaddress";
+            public const string IS_SELECTED = "isselected";
             public const string HOSTNAME = "hostname";
         }
 

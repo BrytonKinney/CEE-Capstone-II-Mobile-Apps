@@ -2,6 +2,8 @@
 using CapstoneApp.Shared.Views;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CapstoneApp.Shared.Services.Interfaces;
+using LightInject;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,6 +20,8 @@ namespace CapstoneApp.Views
             MasterBehavior = MasterBehavior.Popover;
 
             MenuPages.Add((int)MenuItemType.RssFeeds, (NavigationPage)Detail);
+            if (App.Container.GetInstance<ISmartMirrorService>().GetInstance() == null)
+                NavigateFromMenu((int) MenuItemType.Devices);
         }
 
         public async Task NavigateFromMenu(int id)
