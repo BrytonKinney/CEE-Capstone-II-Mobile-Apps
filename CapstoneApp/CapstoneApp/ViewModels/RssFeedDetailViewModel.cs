@@ -22,7 +22,7 @@ namespace CapstoneApp.ViewModels
                 {
                     await SaveEntity(new RssFeed(model), page).ContinueWith(async (t) =>
                     {
-                        if (t.IsCompleted)
+                        if (t.IsCompleted && !t.IsFaulted)
                         {
                             Device.BeginInvokeOnMainThread(async () =>
                             {

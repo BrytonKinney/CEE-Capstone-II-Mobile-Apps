@@ -20,8 +20,6 @@ namespace CapstoneApp.Views
             MasterBehavior = MasterBehavior.Popover;
 
             MenuPages.Add((int)MenuItemType.RssFeeds, (NavigationPage)Detail);
-            if (App.Container.GetInstance<ISmartMirrorService>().GetInstance() == null)
-                NavigateFromMenu((int) MenuItemType.Devices);
         }
 
         public async Task NavigateFromMenu(int id)

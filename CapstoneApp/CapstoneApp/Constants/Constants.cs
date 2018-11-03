@@ -167,6 +167,11 @@ namespace CapstoneApp.Shared.Constants
             public const string WEATHER_ENABLED = "enabled";
             public const string WEATHER_LOCATION_STRING = "locationstring";
             public const string WEATHER_LOCATION_CODE = "locationcode";
+            public const string WEATHER_LOCATION_LATITUDE = "latitude";
+            public const string WEATHER_LOCATION_LONGITUDE = "longitude";
+            public const string WEATHER_LOCATION_ZIP = "zip";
+            public const string WEATHER_LOCATION_CITY = "city";
+            public const string WEATHER_LOCATION_COUNTRY = "country";
         }
     }
 

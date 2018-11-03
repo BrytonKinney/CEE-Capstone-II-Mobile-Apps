@@ -3,7 +3,7 @@
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="CapstoneApp.Shared.Views.DeviceListPage">
-	<ContentPage.Content>
+    <ContentPage.Content>
 		<ListView x:Name="deviceListView"
 				  ItemsSource="{Binding DiscoveredDevices}"
 				  VerticalOptions="FillAndExpand"
@@ -11,8 +11,8 @@
 				  RefreshCommand="{Binding LoadItemsCommand}"
 				  IsPullToRefreshEnabled="true"
 				  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-		          CachingStrategy="RecycleElement"
-		          ItemSelected="OnItemSelected">
+				  CachingStrategy="RecycleElement"
+				  ItemSelected="OnItemSelected">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<ViewCell>

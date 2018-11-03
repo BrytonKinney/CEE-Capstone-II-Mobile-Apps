@@ -47,27 +47,15 @@ namespace CapstoneApp.Shared.Services.Implementations
             {
                 if (_smService.GetInstance() == null)
                 {
-                    await args.Page.Navigation.PushAsync(new DeviceListPage()).ContinueWith(async (t) =>
+                    Device.BeginInvokeOnMainThread(async () =>
                     {
-                        if (t.IsCompleted)
-                        {
-                            MessagingCenter.Subscribe<DeviceListPage, SmartMirror>(this, "MirrorSelected", async (page, mirror) =>
-                            {
-                                var mirrors = await _dbService.GetConnection().Table<SmartMirror>().ToListAsync();
-                                mirrors = mirrors.Where(m => m.HostName != mirror.HostName).ToList();
-                                foreach (var m in mirrors)
-                                {
-                                    m.IsSelected = 0;
-                                    await _dbService.AddOrUpdateAsync(m);
-                                }
-                                mirror.IsSelected = 1;
-                                await SendOrSaveChanges(new ConfigurationEventArgs(mirror, page));
-                            });
-                        }
+                        await Application.Current.MainPage.DisplayAlert("Select a Mirror!", "You will need to select a Lustro instance before your changes show up.", "OK");
                     });
                 }
                 else
+                {
                     await SendOrSaveChanges(args);
+                }
 
             }
             catch (Exception ex)
