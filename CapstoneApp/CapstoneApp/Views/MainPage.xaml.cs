@@ -1,8 +1,9 @@
-﻿using CapstoneApp.Models;
+using CapstoneApp.Models;
 using CapstoneApp.Shared.Views;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CapstoneApp.Shared.Services.Interfaces;
+using LightInject;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,6 +20,8 @@ namespace CapstoneApp.Views
             MasterBehavior = MasterBehavior.Popover;
 
             MenuPages.Add((int)MenuItemType.RssFeeds, (NavigationPage)Detail);
+            if (App.Container.GetInstance<ISmartMirrorService>().GetInstance() == null)
+                NavigateFromMenu((int) MenuItemType.Devices);
         }
 
         public async Task NavigateFromMenu(int id)
@@ -27,6 +30,9 @@ namespace CapstoneApp.Views
             {
                 switch (id)
                 {
+                    case (int)MenuItemType.Devices:
+                        MenuPages.Add(id, new NavigationPage(new DeviceListPage()));
+                        break;
                     case (int)MenuItemType.RssFeeds:
                         MenuPages.Add(id, new NavigationPage(new RssFeedsPage()));
                         break;
@@ -39,7 +45,9 @@ namespace CapstoneApp.Views
                     case (int)MenuItemType.Google:
                         MenuPages.Add(id, new NavigationPage(new GooglePage()));
                         break;
-
+                    case (int)MenuItemType.Email:
+                        MenuPages.Add(id, new NavigationPage(new EmailPage()));
+                        break;
                 }
             }
 

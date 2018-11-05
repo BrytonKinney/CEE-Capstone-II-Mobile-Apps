@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CapstoneApp.Shared.Views.WeatherModelDetailsPage">
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="{Binding Item.Name}" />
+        <StackLayout IsVisible="{Binding IsZipVisible}">
+            <Label Text="ZIP Code" />
+            <Label Text="{Binding Item.ZipCode}" />
+        </StackLayout>
+        <StackLayout IsVisible="{Binding IsCoordsVisible}">
+            <Label Text="Latitude" />
+            <Label Text="{Binding Item.Latitude}" />
+            <Label Text="Longitude" />
+            <Label Text="{Binding Item.Longitude}" />
+        </StackLayout>
+        <StackLayout IsVisible="{Binding IsCityCountryVisible}">
+            <Label Text="City" />
+            <Label Text="{Binding Item.City}" />
+            <Label Text="Country" />
+            <Label Text="{Binding Item.CountryCode}" />
+        </StackLayout>
+        <Label Text="Enabled?" />
+        <Switch HorizontalOptions="Start" IsToggled="{Binding Item.Enabled}" />
+        <Button Text="Save Changes" x:Name="SaveWeatherChangesBtn" Clicked="Save_Clicked" />
+    </StackLayout>
+</ContentPage>

@@ -1,4 +1,4 @@
-﻿using CapstoneApp.Shared.Constants;
+using CapstoneApp.Shared.Constants;
 using CapstoneApp.Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -7,8 +7,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Xamarin.Auth;
+using CapstoneApp.Shared.Entities;
 
-namespace Shared.Constants
+namespace CapstoneApp.Shared.Constants
 {
     /// <summary>
     /// Standard XML node types for RSS feeds
@@ -44,8 +45,32 @@ namespace Shared.Constants
             public const string Articles = "Articles";
             public const string MaxArticles = "MaxArticles";
         }
+
+        public static class MirrorConfiguration
+        {
+            public const string Mirror = "Mirror";
+            public const string Config = "Cfg";
+            public const string HostName = "HostName";
+            public const string IpAddress = "IpAddress";
+            public const string RssFeeds = "RssFeeds";
+            public const string WeatherLocations = "WeatherLocations";
+        }
     }
 
+    public static class DefaultQuadrantSettings
+    {
+        public static QuadrantSettings[] Defaults =
+        {
+            new QuadrantSettings()
+            {
+                ItemType = QuadrantConstants.ItemTypes.RSS_FEEDS, Quadrant = QuadrantConstants.Q1
+            },
+            new QuadrantSettings()
+            {
+                ItemType = QuadrantConstants.ItemTypes.WEATHER_LOCATIONS, Quadrant = QuadrantConstants.Q2
+            }
+        };
+    }
     /// <summary>
     /// The URLs for RSS feeds that will be listed by default
     /// </summary>
@@ -110,6 +135,21 @@ namespace Shared.Constants
         public const string DATABASE_FILE_NAME = "capstone_app_settings.db";
         public static string DATABASE_FILE_LOCATION = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DATABASE_FILE_NAME);
         public const string ID = "id";
+
+        public static class Mirror
+        {
+            public const string MIRROR_TABLE = "mirror";
+            public const string IP_ADDR = "ipaddress";
+            public const string IS_SELECTED = "isselected";
+            public const string HOSTNAME = "hostname";
+        }
+
+        public static class Quadrant
+        {
+            public const string ITEM_TYPE = "itemtype";
+            public const string QUADRANT = "quadrant";
+            public const string QUAD_TABLE = "quadrants";
+        }
         public static class RSS
         {
             public const string RSS_FEED_TABLE = "rssfeeds";
@@ -151,8 +191,6 @@ namespace Shared.Constants
             RssFeeds
         };
     }
-
-
     public static class AuthConstants{
         public static string iOSClientId = "178940052019-4ba9dcg9r991jipls85ag0c1j53lnbo2.apps.googleusercontent.com";
         public static string AndroidClientId = "<insert Android client ID here>";
@@ -172,5 +210,20 @@ namespace Shared.Constants
     public class AuthenticationState
     {
         public static OAuth2Authenticator Authenticator;
+    }
+    public static class QuadrantConstants
+    {
+        public static class ItemTypes
+        {
+            public const string RSS_FEEDS = "rss";
+            public const string WEATHER_LOCATIONS = "weather";
+            public const string EMAIL = "email";
+        }
+
+        public const int Q1 = 1;
+        public const int Q2 = 2;
+        public const int Q3 = 3;
+        public const int Q4 = 4;
+        public const int Q5 = 5;
     }
 }

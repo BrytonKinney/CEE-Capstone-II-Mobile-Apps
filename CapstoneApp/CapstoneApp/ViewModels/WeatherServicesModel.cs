@@ -17,15 +17,17 @@ namespace CapstoneApp.Shared.ViewModels
     {
         public Command LoadItemsCommand { get; set; }
         public ObservableCollection<WeatherModel> Services { get; set; }
+        private IDatabaseProvider _dbDriver;
         public WeatherServicesModel()
         {
+            _dbDriver = App.Container.GetInstance<IDatabaseProvider>();
             Services = new ObservableCollection<WeatherModel>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             MessagingCenter.Subscribe<NewWeatherLocationPage, WeatherModel>(this, "AddWeatherLocation", async (obj, item) =>
             {
-                var dbDriver = App.Container.GetInstance<IDatabaseProvider>();
                 var newModel = new WeatherLocations(item);
-                await dbDriver.AddOrUpdateAsync(newModel);
+                int id = await _dbDriver.AddOrUpdateAsync(newModel);
+                newModel.Id = id;
                 Services.Add(new WeatherModel(newModel));
                 new Command(async () => await ExecuteLoadItemsCommand()).Execute(null);
             });
@@ -38,8 +40,7 @@ namespace CapstoneApp.Shared.ViewModels
             try
             {
                 Services.Clear();
-                var dbDriver = App.Container.GetInstance<IDatabaseProvider>();
-                var weatherLocations = await dbDriver.GetConnection().Table<WeatherLocations>().ToListAsync();
+                var weatherLocations = await _dbDriver.GetConnection().Table<WeatherLocations>().ToListAsync();
                 if(weatherLocations.Count > 0)
                 {
                     var newModels = weatherLocations.Select(x => new WeatherModel(x));

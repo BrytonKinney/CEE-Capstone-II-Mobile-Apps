@@ -7,6 +7,7 @@ namespace Shared.Services.Interfaces
     {
         SQLiteAsyncConnection GetConnection();
         Task<int> AddOrUpdateAsync<T>(T item);
-        Task<BaseEntity> GetAsync<BaseEntity>(int id) where BaseEntity : new();
+        Task<T> GetAsync<T>(int id) where T : new();
+        Task<int> DeleteAsync<T>(T item);
     }
 }

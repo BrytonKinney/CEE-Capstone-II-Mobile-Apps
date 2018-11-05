@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,10 +6,12 @@ namespace CapstoneApp.Models
 {
     public enum MenuItemType
     {
+        Devices,
         RssFeeds,
         About,
         Weather,
-        Google
+        Google,
+        Email
     }
     public class HomeMenuItem
     {

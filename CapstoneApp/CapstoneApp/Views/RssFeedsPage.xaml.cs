@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using CapstoneApp.Models;
+using CapstoneApp.ViewModels;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
-using CapstoneApp.Models;
-using CapstoneApp.Views;
-using CapstoneApp.ViewModels;
-using Shared.Constants;
 
 namespace CapstoneApp.Views
 {
@@ -23,7 +15,7 @@ namespace CapstoneApp.Views
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new RssFeedViewModel(CommandConstants.VIEWS.RssFeeds);
+            BindingContext = viewModel = new RssFeedViewModel(Shared.Constants.CommandConstants.VIEWS.RssFeeds);
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -47,8 +39,8 @@ namespace CapstoneApp.Views
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            //if (viewModel.Items.Count == 0)
+            viewModel.LoadItemsCommand.Execute(null);
         }
     }
 }

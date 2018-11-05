@@ -1,16 +1,23 @@
 ﻿
+using System.Linq;
 using Android;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Plugin.CurrentActivity;
+using Xamarin.Forms;
 
 namespace CapstoneApp.Droid
 {
     [Activity(Label = "Capstone App", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        private string[] PERMS = { Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation };
+        private string[] PERMS =
+        {
+            Manifest.Permission.AccessCoarseLocation,
+            Manifest.Permission.AccessFineLocation,
+            Manifest.Permission.Bluetooth,
+            Manifest.Permission.ChangeWifiMulticastState
+        };
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -18,8 +25,11 @@ namespace CapstoneApp.Droid
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            if(ApplicationContext.CheckSelfPermission(PERMS[0]) != Permission.Granted)
-                RequestPermissions(PERMS, 0);
+            foreach (var perm in PERMS.Select((item, index) => new { Index = index, Permission = item }))
+            {
+                if(ApplicationContext.CheckSelfPermission(perm.Permission) != Permission.Granted)
+                    RequestPermissions(PERMS, perm.Index);
+            }
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
