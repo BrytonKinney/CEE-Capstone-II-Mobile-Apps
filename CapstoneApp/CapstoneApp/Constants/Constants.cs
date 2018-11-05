@@ -6,6 +6,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Xamarin.Auth;
 
 namespace Shared.Constants
 {
@@ -128,11 +129,19 @@ namespace Shared.Constants
             public const string WEATHER_LOCATION_STRING = "locationstring";
             public const string WEATHER_LOCATION_CODE = "locationcode";
         }
+        public static class Email
+        {
+            public const string EMAIL_TABLE = "emailtable";
+            public const string EMAIL_ID = "id";
+            public const string EMAIL_ADDRESS = "email";
+            public const string EMAIL_PASSWORD = "password";
+        }
     }
 
     public static class ViewConstants
     {
         public const string RSS_FEEDS_TITLE = "RSS Feeds";
+        public const string NEW_WEATHER_LOCATION = "Add a New Weather Location";
     }
 
     public static class CommandConstants
@@ -141,5 +150,27 @@ namespace Shared.Constants
         {
             RssFeeds
         };
+    }
+
+
+    public static class AuthConstants{
+        public static string iOSClientId = "178940052019-4ba9dcg9r991jipls85ag0c1j53lnbo2.apps.googleusercontent.com";
+        public static string AndroidClientId = "<insert Android client ID here>";
+
+        // These values do not need changing
+        public static string Scope = "https://www.googleapis.com/auth/userinfo.email";
+        public static string AuthorizeUrl = "https://accounts.google.com/o/oauth2/auth";
+        public static string AccessTokenUrl = "https://www.googleapis.com/oauth2/v4/token";
+        public static string UserInfoUrl = "https://www.googleapis.com/oauth2/v2/userinfo";
+
+        // Set these to reversed iOS/Android client ids, with :/oauth2redirect appended
+        public static string iOSRedirectUrl = "com.googleusercontent.apps.178940052019-4ba9dcg9r991jipls85ag0c1j53lnbo2:/oauth2redirect";
+        public static string AndroidRedirectUrl = "<insert Android redirect URL here>:/oauth2redirect";
+
+    }
+
+    public class AuthenticationState
+    {
+        public static OAuth2Authenticator Authenticator;
     }
 }

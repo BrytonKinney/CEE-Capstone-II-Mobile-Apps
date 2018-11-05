@@ -20,6 +20,7 @@ namespace CapstoneApp.Views
             {
                 new HomeMenuItem {Id = MenuItemType.RssFeeds, Title="RSS Feeds" },
                 new HomeMenuItem {Id = MenuItemType.Weather, Title="Weather Services" },
+                new HomeMenuItem {Id = MenuItemType.Google, Title="Email"},
                 new HomeMenuItem {Id = MenuItemType.About, Title="About" }
             };
 
