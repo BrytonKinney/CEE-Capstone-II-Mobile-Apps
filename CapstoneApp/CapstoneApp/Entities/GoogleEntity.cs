@@ -1,5 +1,8 @@
 ﻿using System;
-
+using Newtonsoft.Json;
+using CapstoneApp.Shared.Constants;
+using GA = CapstoneApp.Shared.Constants.JsonSerializerAttributes.GoogleAuth;
+using CapstoneApp.Shared.Models;
 
 namespace CapstoneApp.Shared.Entities
 {

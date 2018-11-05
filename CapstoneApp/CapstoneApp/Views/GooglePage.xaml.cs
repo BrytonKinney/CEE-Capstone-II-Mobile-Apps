@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using CapstoneApp.Shared.Models;
-using Shared.Constants;
-using Google.Apis.Services;
 using Xamarin.Auth;
 using Xamarin.Forms;
 using Newtonsoft.Json.Linq;
 using CapstoneApp.Shared.ViewModels;
+using CapstoneApp.Shared.Constants;
 
 namespace CapstoneApp.Shared.Views
 {
@@ -27,8 +26,6 @@ namespace CapstoneApp.Shared.Views
 
         void Google_Btn_Clicked(object sender, EventArgs e)
         {
-
-
 
             switch (Device.RuntimePlatform)
             {
@@ -79,8 +76,6 @@ namespace CapstoneApp.Shared.Views
                 var response = await request.GetResponseAsync();
                 if (response != null)
                 {
-                    // Deserialize the data and store it in the account store
-                    // The users email address will be used to identify data in SimpleDB
                     string userJson = await response.GetResponseTextAsync();
                     dynamic data = JObject.Parse(userJson);
                     model.Email = data.emailAddress;

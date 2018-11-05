@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using CapstoneApp.Shared.Constants;
 using CapstoneApp.Shared.Entities.RssFeed;
 using Xamarin.Forms;
-
+using static CapstoneApp.Shared.Constants.DatabaseConstants;
 
 namespace CapstoneApp.ViewModels
 {

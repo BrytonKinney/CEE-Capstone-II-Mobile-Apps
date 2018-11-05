@@ -14,7 +14,8 @@
   <ItemGroup>
     <Compile Remove="Services\IDataStore.cs" />
     <Compile Remove="Services\MockDataStore.cs" />
-    <Compile Remove="Views\DeviceListPage.xaml.cs" />
+    <Compile Remove="Entities\Email\Email.cs" />
+    <Compile Remove="ViewModels\EmailLoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="LightInject" Version="5.2.0" />
@@ -31,6 +32,9 @@
     <Reference Include="Mono.Android">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\VS 2017 Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v8.1\Mono.Android.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\..\..\Library\Frameworks\Mono.framework\External\xbuild-frameworks\MonoAndroid\v8.1\Mono.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\RssFeedDetailPage.xaml.cs">
@@ -39,6 +43,13 @@
     <Compile Update="Views\RssFeedsPage.xaml.cs">
       <DependentUpon>RssFeedsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\DeviceListPage.xaml.cs">
+      <DependentUpon>DeviceListPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\EmailPage.xaml" />
+    <EmbeddedResource Remove="Views\NewEmailPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Views\NewWeatherLocationPage.xaml">
