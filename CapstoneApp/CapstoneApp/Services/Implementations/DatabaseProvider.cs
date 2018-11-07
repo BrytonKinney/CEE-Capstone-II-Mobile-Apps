@@ -30,7 +30,8 @@ namespace Shared.Services.Implementations
         {
             try
             {
-                await _connection.CreateTablesAsync<RssFeed, WeatherLocations, SmartMirror, QuadrantSettings>();
+                await _connection.CreateTablesAsync<RssFeed, WeatherLocations, SmartMirror, QuadrantSettings, GoogleEntity>();
+
             }
             catch (Exception ex)
             {

@@ -13,25 +13,23 @@ using Xamarin.Forms;
 
 namespace CapstoneApp.Shared.ViewModels
 {
-    public class EmailLoginViewModel : BaseViewModel
+    public class GoogleServiceViewModel : BaseViewModel
     {
         public Command LoadItemsCommand { get; set; }
-        public ObservableCollection<EmailModel> Services { get; set; }
-        public EmailLoginViewModel()
+        public ObservableCollection<GoogleDataModel> Services { get; set; }
+        public GoogleServiceViewModel()
         {
-            Services = new ObservableCollection<EmailModel>();
+            Services = new ObservableCollection<GoogleDataModel>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            MessagingCenter.Subscribe<NewEmailPage, EmailModel>(this, "AddNewEmail", async (obj, item) =>
+            MessagingCenter.Subscribe<GooglePage, GoogleDataModel>(this, "AddGoogleAccount", async (obj, item) =>
             {
                 var dbDriver = App.Container.GetInstance<IDatabaseProvider>();
-                var newModel = new Email(item);
+                var newModel = new GoogleEntity(item);
                 await dbDriver.AddOrUpdateAsync(newModel);
-                Services.Add(new EmailModel(newModel));
+                Services.Add(new GoogleDataModel(newModel));
                 new Command(async () => await ExecuteLoadItemsCommand()).Execute(null);
             });
         }
-
-
         async Task ExecuteLoadItemsCommand()
         {
             if (IsBusy)
@@ -41,10 +39,10 @@ namespace CapstoneApp.Shared.ViewModels
             {
                 Services.Clear();
                 var dbDriver = App.Container.GetInstance<IDatabaseProvider>();
-                var weatherLocations = await dbDriver.GetConnection().Table<Email>().ToListAsync();
-                if (weatherLocations.Count > 0)
+                var googleEntities = await dbDriver.GetConnection().Table<GoogleEntity>().ToListAsync();
+                if (googleEntities.Count > 0)
                 {
-                    var newModels = weatherLocations.Select(x => new EmailModel(x));
+                    var newModels = googleEntities.Select(x => new GoogleDataModel(x));
                     foreach (var m in newModels)
                         Services.Add(m);
                 }

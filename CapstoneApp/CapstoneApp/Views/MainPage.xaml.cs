@@ -1,4 +1,4 @@
-﻿using CapstoneApp.Models;
+using CapstoneApp.Models;
 using CapstoneApp.Shared.Views;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -42,8 +42,11 @@ namespace CapstoneApp.Views
                     case (int)MenuItemType.Weather:
                         MenuPages.Add(id, new NavigationPage(new WeatherProviderPage()));
                         break;
+                    case (int)MenuItemType.Google:
+                        MenuPages.Add(id, new NavigationPage(new GooglePage()));
+                        break;
                     case (int)MenuItemType.Email:
-                        MenuPages.Add(id, new NavigationPage(new EmailPage()));
+                        MenuPages.Add(id, new NavigationPage(new GooglePage()));
                         break;
                 }
             }
