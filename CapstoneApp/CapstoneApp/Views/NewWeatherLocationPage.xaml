@@ -52,7 +52,8 @@
                 <Picker Title="Country" x:Name="CountryDropdowns"
                         IsVisible="{Binding CityCountryVisible}"
                         ItemsSource="{Binding CountryNames}"
-                        ItemDisplayBinding="{Binding Name}" />
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedIndexChanged="CountryDropdowns_OnSelectedIndexChanged"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

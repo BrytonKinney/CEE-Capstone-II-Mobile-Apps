@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CapstoneApp.Shared.Views.QuadrantSettingsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Quadrant One"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Picker x:Name="QuadOne" />
+            <Label Text="Quadrant Two"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+            <Picker x:Name="QuadTwo" />
+            <Label Text="Quadrant Three"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+            <Picker x:Name="QuadThree" />
+            <Label Text="Quadrant Four"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+            <Picker x:Name="QuadFour" />
+            <Label Text="Quadrant Five"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+            <Picker x:Name="QuadFive" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -55,6 +55,7 @@ namespace CapstoneApp.Shared.Services.Implementations
                 else
                 {
                     await SendOrSaveChanges(args);
+                    _dbService.GetConnection().GetConnection().Commit();
                 }
 
             }

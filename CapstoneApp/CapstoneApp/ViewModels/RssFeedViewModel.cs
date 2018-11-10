@@ -43,18 +43,25 @@ namespace CapstoneApp.ViewModels
 
         async Task AddFeedAsync(NewItemPage obj, RssFeedModel item)
         {
-            var newItem = item as RssFeedModel;
-            RssFeed newFeed = new RssFeed(newItem.Url);
-            await _feedReader.GetFeedArticles(newFeed).ContinueWith(async (t) =>
+            try
             {
-                if(t.IsCanceled || t.IsFaulted)
-                    Device.BeginInvokeOnMainThread(async () => await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Error", "There was an issue adding the RSS feed.", "OK"));
-                else
+                var newItem = item as RssFeedModel;
+                RssFeed newFeed = new RssFeed(newItem.Url);
+                await _feedReader.GetFeedArticles(newFeed).ContinueWith(async (t) =>
                 {
-                    await SaveEntity(newFeed, obj);
-                    Items.Add(new RssFeedModel(newFeed));
-                }
-            });
+                    if(t.IsCanceled || t.IsFaulted)
+                        Device.BeginInvokeOnMainThread(async () => await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Error", "There was an issue adding the RSS feed.", "OK"));
+                    else
+                    {
+                        await SaveEntity(newFeed, obj);
+                        Items.Add(new RssFeedModel(newFeed));
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
 
         async Task LoadRSSFeeds()
