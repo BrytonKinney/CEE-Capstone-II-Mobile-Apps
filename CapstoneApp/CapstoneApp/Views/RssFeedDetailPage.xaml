@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CapstoneApp.Views.RssFeedDetailPage"
+             Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Delete" Clicked="MenuItem_OnClicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="add.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="Feed:" FontSize="Medium" />
+        <Label Text="{Binding Item.Text}" FontSize="Small"/>
+        <Label Text="Description:" FontSize="Medium" />
+        <Label Text="{Binding Item.Description}" FontSize="Small"/>
+        <Label Text="Enabled?" FontSize="Small" />
+        <Switch HorizontalOptions="Start" IsToggled="{Binding Item.Enabled}" />
+        <Button Text="Save Changes" Clicked="saveChangesBtn_Clicked" x:Name="saveChangesBtn" />
+    </StackLayout>
+</ContentPage>
