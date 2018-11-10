@@ -1,4 +1,4 @@
-﻿using CapstoneApp.Models;
+using CapstoneApp.Models;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -20,7 +20,9 @@ namespace CapstoneApp.Views
                 new HomeMenuItem {Id = MenuItemType.Devices, Title = "Smart Mirrors" },
                 new HomeMenuItem {Id = MenuItemType.RssFeeds, Title="RSS Feeds" },
                 new HomeMenuItem {Id = MenuItemType.Weather, Title="Weather Services" },
+                new HomeMenuItem {Id = MenuItemType.Google, Title="Email"},
                 new HomeMenuItem {Id = MenuItemType.About, Title="About" }
+                new HomeMenuItem {Id = MenuItemType.Email, Title="Email"}
             };
 
             ListViewMenu.ItemsSource = menuItems;

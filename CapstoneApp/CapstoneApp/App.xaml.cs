@@ -1,4 +1,4 @@
-﻿using Android.Content;
+﻿
 using CapstoneApp.Shared.Models;
 using CapstoneApp.Shared.Services.Implementations;
 using CapstoneApp.Shared.Services.Interfaces;

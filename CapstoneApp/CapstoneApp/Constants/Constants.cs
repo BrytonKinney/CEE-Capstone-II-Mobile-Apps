@@ -6,6 +6,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Xamarin.Auth;
 using CapstoneApp.Shared.Entities;
 
 namespace CapstoneApp.Shared.Constants
@@ -19,7 +20,7 @@ namespace CapstoneApp.Shared.Constants
         /// News article parent node
         /// </summary>
         public const string ITEM = "item";
-        
+
         /// <summary>
         /// Doubles as an article title node and the news feed name
         /// </summary>
@@ -45,6 +46,7 @@ namespace CapstoneApp.Shared.Constants
             public const string MaxArticles = "MaxArticles";
         }
 
+
         public static class MirrorConfiguration
         {
             public const string Mirror = "Mirror";
@@ -53,9 +55,22 @@ namespace CapstoneApp.Shared.Constants
             public const string IpAddress = "IpAddress";
             public const string RssFeeds = "RssFeeds";
             public const string WeatherLocations = "WeatherLocations";
-        }
-    }
 
+        }
+
+        public static class GoogleAuth
+        {
+            public const string Email = "Email";
+            public const string AccessToken = "AccessToken";
+            public const string AccessTokenUrl = "AccessTokenUrl";
+            public const string RefreshToken = "RefreshToken";
+            public const string AuthUrl = "AuthUrl";
+            public const string ClientId = "ClientId";
+            public const string Scope = "Scope";
+
+        }
+
+    }
     public static class DefaultQuadrantSettings
     {
         public static QuadrantSettings[] Defaults =
@@ -119,11 +134,11 @@ namespace CapstoneApp.Shared.Constants
             Coordinates,
             CityCountry
         }
-        public static string[] LocationDropdownOptions = {"ZIP Code", "Coordinates (Your Current Location)", "City and Country Code" };
+        public static string[] LocationDropdownOptions = { "ZIP Code", "Coordinates (Your Current Location)", "City and Country Code" };
     }
     public static class DefaultWeatherServices
     {
-       // public static WeatherModel OpenWeather
+        // public static WeatherModel OpenWeather
     }
 
     /// <summary>
@@ -173,7 +188,22 @@ namespace CapstoneApp.Shared.Constants
             public const string WEATHER_LOCATION_CITY = "city";
             public const string WEATHER_LOCATION_COUNTRY = "country";
         }
+
+        public static class Google
+        {
+            public const string GOOGLE_TABLE = "googletable";
+            public const string GOOGLE_ID = "id";
+            public const string EMAIL = "email";
+            public const string ACCESS_TOKEN = "accesstoken";
+            public const string ACCESS_TOKEN_URL = "accesstokenurl";
+            public const string REFRESH_TOKEN = "refreshtoken";
+            public const string AUTH_URL = "authurl";
+            public const string CLIENT_ID = "clientid";
+            public const string SCOPE = "scope";
+        }
+
     }
+
 
     public static class ViewConstants
     {
@@ -188,6 +218,7 @@ namespace CapstoneApp.Shared.Constants
             RssFeeds
         };
     }
+
 
     public static class QuadrantConstants
     {
@@ -204,4 +235,27 @@ namespace CapstoneApp.Shared.Constants
         public const int Q4 = 4;
         public const int Q5 = 5;
     }
+
+    public static class AuthConstants
+    {
+        public static string iOSClientId = "178940052019-4ba9dcg9r991jipls85ag0c1j53lnbo2.apps.googleusercontent.com";
+        public static string AndroidClientId = "<insert Android client ID here>";
+
+        // These values do not need changing
+        public static string Scope = "https://www.googleapis.com/auth/plus.me https://mail.google.com/"; //https://mail.google.com/  https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile
+        public static string AuthorizeUrl = "https://accounts.google.com/o/oauth2/auth";
+        public static string AccessTokenUrl = "https://www.googleapis.com/oauth2/v4/token";
+        public static string UserInfoUrl = "https://www.googleapis.com/oauth2/v2/userinfo";
+
+        // Set these to reversed iOS/Android client ids, with :/oauth2redirect appended
+        public static string iOSRedirectUrl = "com.googleusercontent.apps.178940052019-4ba9dcg9r991jipls85ag0c1j53lnbo2:/oauth2redirect";
+        public static string AndroidRedirectUrl = "<insert Android redirect URL here>:/oauth2redirect";
+
+    }
+
+    public class AuthenticationState
+    {
+        public static OAuth2Authenticator Authenticator;
+    }
+
 }
