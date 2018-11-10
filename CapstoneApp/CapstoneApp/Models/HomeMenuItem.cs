@@ -10,7 +10,8 @@ namespace CapstoneApp.Models
         RssFeeds,
         About,
         Weather,
-        Email
+        Email,
+        Google
     }
     public class HomeMenuItem
     {
