@@ -2,28 +2,42 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CapstoneApp.Shared.Views.QuadrantSettingsPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Clicked="Save_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="save.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Quadrant One"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Picker x:Name="QuadOne" />
-            <Label Text="Quadrant Two"
-                   VerticalOptions="CenterAndExpand" 
-                   HorizontalOptions="CenterAndExpand" />
-            <Picker x:Name="QuadTwo" />
-            <Label Text="Quadrant Three"
-                   VerticalOptions="CenterAndExpand" 
-                   HorizontalOptions="CenterAndExpand" />
-            <Picker x:Name="QuadThree" />
-            <Label Text="Quadrant Four"
-                   VerticalOptions="CenterAndExpand" 
-                   HorizontalOptions="CenterAndExpand" />
-            <Picker x:Name="QuadFour" />
-            <Label Text="Quadrant Five"
-                   VerticalOptions="CenterAndExpand" 
-                   HorizontalOptions="CenterAndExpand" />
-            <Picker x:Name="QuadFive" />
+            <Picker x:Name="Q1"
+                Title="Quadrant One"
+                SelectedIndexChanged="Q_OnSelectedIndexChanged"
+                ItemsSource="{Binding PickerOptions}"
+                SelectedItem="{Binding Q1.ItemType}"/>
+            <Picker x:Name="Q2"
+                SelectedIndexChanged="Q_OnSelectedIndexChanged"
+                Title="Quadrant Two" 
+                ItemsSource="{Binding PickerOptions}" 
+                SelectedItem="{Binding Q2.ItemType}"/>
+            <Picker x:Name="Q3"
+                SelectedIndexChanged="Q_OnSelectedIndexChanged"
+                Title="Quadrant Three"
+                ItemsSource="{Binding PickerOptions}"
+                SelectedItem="{Binding Q3.ItemType}"/>
+            <Picker x:Name="Q4"
+                SelectedIndexChanged="Q_OnSelectedIndexChanged"
+                Title="Quadrant Four"
+                ItemsSource="{Binding PickerOptions}"
+                SelectedItem="{Binding Q4.ItemType}"/>
+            <Picker x:Name="Q5"
+                SelectedIndexChanged="Q_OnSelectedIndexChanged"
+                Title="Quadrant Five"
+                ItemsSource="{Binding PickerOptions}"
+                SelectedItem="{Binding Q5.ItemType}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

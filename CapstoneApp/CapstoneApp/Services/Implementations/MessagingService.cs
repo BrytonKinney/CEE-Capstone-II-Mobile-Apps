@@ -13,7 +13,7 @@ namespace CapstoneApp.Shared.Services.Implementations
     {
         private ConnectionFactory _factory;
 
-        public async Task SendConfig(MirrorConfig config)
+        public void SendConfig(MirrorConfig config)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace CapstoneApp.Shared.Services.Implementations
 
                         var cfgString = Newtonsoft.Json.JsonConvert.SerializeObject(config);
                         var cfgBytes = Encoding.UTF8.GetBytes(cfgString);
-                        channel.BasicPublish(exchange: "", 
+                        channel.BasicPublish(exchange: "",
                             routingKey: "config_settings",
                             basicProperties: null,
                             body: cfgBytes);

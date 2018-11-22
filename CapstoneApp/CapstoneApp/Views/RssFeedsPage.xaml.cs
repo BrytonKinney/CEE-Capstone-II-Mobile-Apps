@@ -1,6 +1,7 @@
 ﻿using CapstoneApp.Models;
 using CapstoneApp.ViewModels;
 using System;
+using CapstoneApp.Shared.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

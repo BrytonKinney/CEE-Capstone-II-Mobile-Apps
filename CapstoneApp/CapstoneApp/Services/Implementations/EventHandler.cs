@@ -35,7 +35,7 @@ namespace CapstoneApp.Shared.Services.Implementations
                 return;
 
             if(args.Configuration != null)
-                await _msgService.SendConfig(args.Configuration);
+                _msgService.SendConfig(args.Configuration);
 
             else if (args.Entity != null)
                 await _dbService.AddOrUpdateAsync(args.Entity);

@@ -1,14 +1,13 @@
-﻿
-using System;
+﻿using System;
 using CapstoneApp.Models;
 using CapstoneApp.Shared.Entities.RssFeed;
+using CapstoneApp.ViewModels;
 using CapstoneApp.Views;
 using LightInject;
-using Shared.Entities.RssFeed;
 using Shared.Services.Interfaces;
 using Xamarin.Forms;
 
-namespace CapstoneApp.ViewModels
+namespace CapstoneApp.Shared.ViewModels
 {
     public class RssFeedDetailViewModel : BaseViewModel
     {
