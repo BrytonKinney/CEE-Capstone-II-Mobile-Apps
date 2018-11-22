@@ -24,7 +24,7 @@ namespace CapstoneApp.Shared.Views
 			SmartMirror selectedMirror = new SmartMirror(item);
 			var _db = App.Container.GetInstance<IDatabaseProvider>();
 			await _db.AddOrUpdateAsync(selectedMirror);
-			await Navigation.PushAsync(new RssFeedsPage());
+			//await Navigation.PushAsync(new RssFeedsPage());
 		    MessagingCenter.Send(this, "MirrorSelected", selectedMirror);
 		}
 

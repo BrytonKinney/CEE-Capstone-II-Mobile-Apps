@@ -182,6 +182,11 @@ namespace CapstoneApp.Shared.Constants
             public const string WEATHER_ENABLED = "enabled";
             public const string WEATHER_LOCATION_STRING = "locationstring";
             public const string WEATHER_LOCATION_CODE = "locationcode";
+            public const string WEATHER_LOCATION_LATITUDE = "latitude";
+            public const string WEATHER_LOCATION_LONGITUDE = "longitude";
+            public const string WEATHER_LOCATION_ZIP = "zip";
+            public const string WEATHER_LOCATION_CITY = "city";
+            public const string WEATHER_LOCATION_COUNTRY = "country";
         }
 
         public static class Google
@@ -222,6 +227,15 @@ namespace CapstoneApp.Shared.Constants
             public const string RSS_FEEDS = "rss";
             public const string WEATHER_LOCATIONS = "weather";
             public const string EMAIL = "email";
+            public const string CALENDAR = "calendar";
+        }
+
+        public static class ItemTypeDescriptors
+        {
+            public const string RSS_FEEDS = "RSS Feeds";
+            public const string WEATHER_LOCATIONS = "Weather Locations";
+            public const string EMAIL = "Email";
+            public const string CALENDAR = "Calendar";
         }
 
         public const int Q1 = 1;
@@ -229,12 +243,14 @@ namespace CapstoneApp.Shared.Constants
         public const int Q3 = 3;
         public const int Q4 = 4;
         public const int Q5 = 5;
+
+        public static List<string> PickerOptions = new List<string>() { ItemTypeDescriptors.RSS_FEEDS, ItemTypeDescriptors.WEATHER_LOCATIONS, ItemTypeDescriptors.EMAIL, ItemTypeDescriptors.CALENDAR };
     }
 
     public static class AuthConstants
     {
         public static string iOSClientId = "178940052019-4ba9dcg9r991jipls85ag0c1j53lnbo2.apps.googleusercontent.com";
-        public static string AndroidClientId = "<insert Android client ID here>";
+        public static string AndroidClientId = "178940052019-ejh5h9ojesq877n66sb7bhtai5q0kp37.apps.googleusercontent.com";
 
         // These values do not need changing
         public static string Scope = "https://www.googleapis.com/auth/plus.me https://mail.google.com/"; //https://mail.google.com/  https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile
@@ -244,7 +260,7 @@ namespace CapstoneApp.Shared.Constants
 
         // Set these to reversed iOS/Android client ids, with :/oauth2redirect appended
         public static string iOSRedirectUrl = "com.googleusercontent.apps.178940052019-4ba9dcg9r991jipls85ag0c1j53lnbo2:/oauth2redirect";
-        public static string AndroidRedirectUrl = "<insert Android redirect URL here>:/oauth2redirect";
+        public static string AndroidRedirectUrl = "178940052019-ejh5h9ojesq877n66sb7bhtai5q0kp37.apps.googleusercontent.com:/oauth2redirect";
 
     }
 

@@ -5,6 +5,7 @@ using Shared.Entities.RssFeed;
 using Shared.Services.Interfaces;
 using System;
 using CapstoneApp.Shared.Entities.RssFeed;
+using CapstoneApp.Shared.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

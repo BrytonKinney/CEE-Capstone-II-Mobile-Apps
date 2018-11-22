@@ -1,14 +1,13 @@
-﻿
-using System;
+﻿using System;
 using CapstoneApp.Models;
 using CapstoneApp.Shared.Entities.RssFeed;
+using CapstoneApp.ViewModels;
 using CapstoneApp.Views;
 using LightInject;
-using Shared.Entities.RssFeed;
 using Shared.Services.Interfaces;
 using Xamarin.Forms;
 
-namespace CapstoneApp.ViewModels
+namespace CapstoneApp.Shared.ViewModels
 {
     public class RssFeedDetailViewModel : BaseViewModel
     {
@@ -20,16 +19,17 @@ namespace CapstoneApp.ViewModels
             MessagingCenter.Subscribe<RssFeedDetailPage, RssFeedModel>(this, "SaveRssFeed",
                 async (page, model) =>
                 {
+                    //await SaveEntity(new RssFeed(model), page);
                     await SaveEntity(new RssFeed(model), page).ContinueWith(async (t) =>
                     {
-                        if (t.IsCompleted)
+                        if (t.IsCompleted && !t.IsFaulted)
                         {
                             Device.BeginInvokeOnMainThread(async () =>
                             {
                                 await Application.Current.MainPage.DisplayAlert("Saved changes", "RSS Feed Settings saved.", "OK");
-                                await page.Navigation.PopAsync();
+                      //          await page.Navigation.PopAsync();
                             });
-                            
+
                         }
                     });
                 });

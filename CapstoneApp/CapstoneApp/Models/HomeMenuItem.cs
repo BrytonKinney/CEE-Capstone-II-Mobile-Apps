@@ -8,9 +8,11 @@ namespace CapstoneApp.Models
     {
         Devices,
         RssFeeds,
-        About,
         Weather,
-        Email
+        Email,
+        Google,
+        QuadrantSettings,
+        About
     }
     public class HomeMenuItem
     {
