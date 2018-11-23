@@ -9,6 +9,7 @@ using CapstoneApp.Shared.AppEvents;
 using CapstoneApp.Shared.Entities;
 using CapstoneApp.Shared.Entities.RssFeed;
 using CapstoneApp.Shared.Services.Interfaces;
+using CapstoneApp.Shared.Views;
 using LightInject;
 using Shared.Entities.RssFeed;
 using Shared.Services.Interfaces;
@@ -19,6 +20,7 @@ namespace CapstoneApp.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public event EventHandler<ConfigurationEventArgs> SettingsChanged;
+        private ISmartMirrorService _smSvc;
         private IEventHandler _handler;
         private IDatabaseProvider _dbProvider;
         private object dbLock = new object();
@@ -45,6 +47,7 @@ namespace CapstoneApp.ViewModels
         {
             _handler = App.Container.GetInstance<IEventHandler>();
             DbProvider = App.Container.GetInstance<IDatabaseProvider>();
+            _smSvc = App.Container.GetInstance<ISmartMirrorService>();
             SettingsChanged = _handler.CaptureEvent;
         }
         
@@ -57,8 +60,13 @@ namespace CapstoneApp.ViewModels
 
         protected virtual async Task SaveEntity(BaseEntity entity, ContentPage sendingPage)
         {
-            await _dbProvider.AddOrUpdateAsync(entity);
-            OnSettingsChanged(sendingPage);
+            if (_smSvc.GetInstance() == null)
+                await sendingPage.Navigation.PushModalAsync(new NavigationPage(new DeviceListPage()));
+            else
+            {
+                await _dbProvider.AddOrUpdateAsync(entity);
+                OnSettingsChanged(sendingPage);
+            }
         }
         protected virtual async void OnSettingsChanged(ContentPage sendingPage)
         {

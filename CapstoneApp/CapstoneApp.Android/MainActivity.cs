@@ -25,6 +25,7 @@ namespace CapstoneApp.Droid
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
             foreach (var perm in PERMS.Select((item, index) => new { Index = index, Permission = item }))
             {
                 if(ApplicationContext.CheckSelfPermission(perm.Permission) != Permission.Granted)
