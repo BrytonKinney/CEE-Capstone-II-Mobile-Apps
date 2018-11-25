@@ -55,6 +55,7 @@ namespace CapstoneApp.Shared.Constants
             public const string IpAddress = "IpAddress";
             public const string RssFeeds = "RssFeeds";
             public const string WeatherLocations = "WeatherLocations";
+            public const string QuadrantSettings = "Quadrants";
 
         }
 
