@@ -90,11 +90,8 @@ namespace CapstoneApp.Shared.Views
                 // for finished profile https://people.googleapis.com/v1/people/me?personFields=emailAddresses%2Cphotos&key=
                // string UserInfoUrl = "https://www.googleapis.com/auth/userinfo";
 
-
-/*                if (e.IsAuthenticated)
-                {*/
                     // If the user is authenticated, request their basic user data from Google
-                string UserInfoUrl = "https://www.googleapis.com/oauth2/v2/userinfo";
+                string UserInfoUrl = "https://www.googleapis.com/auth/calendar.readonly";
 
                 var request = new OAuth2Request("GET", new Uri(UserInfoUrl), null, e.Account);
                 var response = await request.GetResponseAsync();
@@ -110,13 +107,6 @@ namespace CapstoneApp.Shared.Views
                 {
 
                 }
-
-                        // Deserialize the data and store it in the account store
-                        // The users email address will be used to identify data in SimpleDB
-                        //string userJson = await response.G
-                        //etResponseTextAsync();
-                //}
-
                 await DisplayAlert("Email address", e.Account.Username, "OK");
             }
         }

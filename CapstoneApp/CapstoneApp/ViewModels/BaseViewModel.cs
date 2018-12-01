@@ -11,11 +11,10 @@ using CapstoneApp.Shared.Entities.RssFeed;
 using CapstoneApp.Shared.Services.Interfaces;
 using CapstoneApp.Shared.Views;
 using LightInject;
-using Shared.Entities.RssFeed;
 using Shared.Services.Interfaces;
 using Xamarin.Forms;
 
-namespace CapstoneApp.ViewModels
+namespace CapstoneApp.Shared.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
@@ -30,9 +29,7 @@ namespace CapstoneApp.ViewModels
             {
                 lock (dbLock)
                 {
-                    if (_dbProvider == null)
-                        _dbProvider = App.Container.GetInstance<IDatabaseProvider>();
-                    return _dbProvider;
+                    return _dbProvider ?? (_dbProvider = App.Container.GetInstance<IDatabaseProvider>());
                 }
             }
             set
@@ -61,10 +58,12 @@ namespace CapstoneApp.ViewModels
         protected virtual async Task SaveEntity(BaseEntity entity, ContentPage sendingPage)
         {
             if (_smSvc.GetInstance() == null)
+            {
                 await sendingPage.Navigation.PushModalAsync(new NavigationPage(new DeviceListPage()));
+            }
             else
             {
-                await _dbProvider.AddOrUpdateAsync(entity);
+                await DbProvider.AddOrUpdateAsync(entity).ConfigureAwait(false);
                 OnSettingsChanged(sendingPage);
             }
         }

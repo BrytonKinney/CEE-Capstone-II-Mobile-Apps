@@ -24,5 +24,8 @@ namespace CapstoneApp.Shared.Entities
 
         [JsonProperty(PropertyName = JsonSerializerAttributes.MirrorConfiguration.QuadrantSettings)]
         public List<QuadrantSettings> Quadrants { get; set; }
+
+        [JsonProperty(PropertyName = JsonSerializerAttributes.MirrorConfiguration.GoogleSettings)]
+        public GoogleEntity GoogleInfo { get; set; }
     }
 }

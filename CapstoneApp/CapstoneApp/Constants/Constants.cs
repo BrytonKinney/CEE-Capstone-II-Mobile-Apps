@@ -56,6 +56,7 @@ namespace CapstoneApp.Shared.Constants
             public const string RssFeeds = "RssFeeds";
             public const string WeatherLocations = "WeatherLocations";
             public const string QuadrantSettings = "Quadrants";
+            public const string GoogleSettings = "GoogleInfo";
 
         }
 
