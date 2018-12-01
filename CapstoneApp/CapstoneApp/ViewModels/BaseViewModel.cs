@@ -77,6 +77,7 @@ namespace CapstoneApp.Shared.ViewModels
                     var feeds = DbProvider.GetConnection().Table<RssFeed>().Where(rss => rss.Enabled == 1);
                     var weatherLocations = DbProvider.GetConnection().Table<WeatherLocations>().Where(weather => weather.Enabled == 1);
                     var quadrants = await DbProvider.GetConnection().Table<QuadrantSettings>().ToListAsync();
+                    var google = await DbProvider.GetConnection().Table<GoogleEntity>().ToListAsync();
 
                     if (quadrants.Count == 0)
                         quadrants = CapstoneApp.Shared.Constants.DefaultQuadrantSettings.Defaults.ToList();
@@ -86,7 +87,8 @@ namespace CapstoneApp.Shared.ViewModels
                         Mirror = mirror,
                         RssFeeds = await feeds.ToListAsync(),
                         WeatherLocations = await weatherLocations.ToListAsync(),
-                        Configuration = quadrants
+                        Configuration = quadrants,
+                        GoogleInfo = google
                     };
                     var settingsChanged = SettingsChanged;
                     settingsChanged.Invoke(this, new ConfigurationEventArgs(config, sendingPage));
