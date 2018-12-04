@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CapstoneApp.Shared.Constants;
 using CapstoneApp.Shared.Entities.RssFeed;
+using CapstoneApp.Shared.ViewModels;
 using Xamarin.Forms;
 using static CapstoneApp.Shared.Constants.DatabaseConstants;
 

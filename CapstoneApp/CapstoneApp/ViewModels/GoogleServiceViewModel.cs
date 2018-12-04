@@ -23,9 +23,8 @@ namespace CapstoneApp.Shared.ViewModels
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             MessagingCenter.Subscribe<GooglePage, GoogleDataModel>(this, "AddGoogleAccount", async (obj, item) =>
             {
-                var dbDriver = App.Container.GetInstance<IDatabaseProvider>();
                 var newModel = new GoogleEntity(item);
-                await dbDriver.AddOrUpdateAsync(newModel);
+                await DbProvider.AddOrUpdateAsync(newModel);
                 Services.Add(new GoogleDataModel(newModel));
                 new Command(async () => await ExecuteLoadItemsCommand()).Execute(null);
             });
@@ -38,8 +37,7 @@ namespace CapstoneApp.Shared.ViewModels
             try
             {
                 Services.Clear();
-                var dbDriver = App.Container.GetInstance<IDatabaseProvider>();
-                var googleEntities = await dbDriver.GetConnection().Table<GoogleEntity>().ToListAsync();
+                var googleEntities = await DbProvider.GetConnection().Table<GoogleEntity>().ToListAsync();
                 if (googleEntities.Count > 0)
                 {
                     var newModels = googleEntities.Select(x => new GoogleDataModel(x));

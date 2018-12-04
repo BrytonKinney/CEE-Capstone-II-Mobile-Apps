@@ -43,6 +43,12 @@ namespace CapstoneApp.Shared.ViewModels
                 {
                     await DbProvider.AddOrUpdateAsync(new QuadrantSettings() {Id = kvp.Key, ItemType = kvp.Value, Quadrant = kvp.Key});
                 }
+
+                Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Quadrant settings updated.",
+                            "The quadrants have been sent and saved.", "Ok");
+                    });
             });
         }
 

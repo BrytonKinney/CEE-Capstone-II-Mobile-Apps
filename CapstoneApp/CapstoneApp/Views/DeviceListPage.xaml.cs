@@ -19,7 +19,10 @@ namespace CapstoneApp.Shared.Views
 			var item = args.SelectedItem as SmartMirrorModel;
 			if (item == null)
 				return;
-			App.Container.GetInstance<ISmartMirrorService>().SetInstance(item);
+            var smSvc = App.Container.GetInstance<ISmartMirrorService>();
+		   // if (smSvc.GetInstance() == null)
+		   //     return;
+		    smSvc.SetInstance(item);
 			deviceListView.SelectedItem = null;
 			SmartMirror selectedMirror = new SmartMirror(item);
 			var _db = App.Container.GetInstance<IDatabaseProvider>();

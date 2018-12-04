@@ -55,6 +55,8 @@ namespace CapstoneApp.Shared.Constants
             public const string IpAddress = "IpAddress";
             public const string RssFeeds = "RssFeeds";
             public const string WeatherLocations = "WeatherLocations";
+            public const string QuadrantSettings = "Quadrants";
+            public const string GoogleSettings = "GoogleInfo";
 
         }
 
@@ -260,7 +262,7 @@ namespace CapstoneApp.Shared.Constants
 
         // Set these to reversed iOS/Android client ids, with :/oauth2redirect appended
         public static string iOSRedirectUrl = "com.googleusercontent.apps.178940052019-4ba9dcg9r991jipls85ag0c1j53lnbo2:/oauth2redirect";
-        public static string AndroidRedirectUrl = "178940052019-ejh5h9ojesq877n66sb7bhtai5q0kp37.apps.googleusercontent.com:/oauth2redirect";
+        public static string AndroidRedirectUrl = "com.googleusercontent.apps.178940052019-ejh5h9ojesq877n66sb7bhtai5q0kp37:/oauth2redirect";
 
     }
 
