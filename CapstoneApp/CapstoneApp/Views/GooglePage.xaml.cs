@@ -88,10 +88,10 @@ namespace CapstoneApp.Shared.Views
 
                 // If the user is authenticated, request their basic user data from Google
                 // for finished profile https://people.googleapis.com/v1/people/me?personFields=emailAddresses%2Cphotos&key=
-               // string UserInfoUrl = "https://www.googleapis.com/auth/userinfo";
+                string UserInfoUrl = "https://www.googleapis.com/auth/userinfo";
 
                     // If the user is authenticated, request their basic user data from Google
-                string UserInfoUrl = "https://www.googleapis.com/auth/calendar.readonly";
+            //    string UserInfoUrl = "https://www.googleapis.com/auth/calendar.readonly";
 
                 var request = new OAuth2Request("GET", new Uri(UserInfoUrl), null, e.Account);
                 var response = await request.GetResponseAsync();
