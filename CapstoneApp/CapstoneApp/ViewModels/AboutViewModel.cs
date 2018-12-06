@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
+
 using Xamarin.Forms;
 
-namespace CapstoneApp.Shared.ViewModels
+namespace CapstoneApp.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {

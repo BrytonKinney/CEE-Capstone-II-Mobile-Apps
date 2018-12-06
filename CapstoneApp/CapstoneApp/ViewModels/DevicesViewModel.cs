@@ -16,7 +16,6 @@ using LightInject;
 using Zeroconf;
 using System.Reactive.Linq;
 using CapstoneApp.Shared.Entities;
-using CapstoneApp.Shared.Views;
 
 namespace CapstoneApp.Shared.ViewModels
 {
@@ -30,14 +29,6 @@ namespace CapstoneApp.Shared.ViewModels
             DiscoveredDevices = new ObservableCollection<SmartMirrorModel>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             _smService = App.Container.GetInstance<ISmartMirrorService>();
-            MessagingCenter.Subscribe<DeviceListPage, SmartMirror>(this, "MirrorSelected", (page, mirror) =>
-            {
-                _smService.SetInstance(new SmartMirrorModel(mirror));
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await Application.Current.MainPage.DisplayAlert("Smart Mirror Selected", "Smart Mirror has been selected.", "OK");
-                });
-            });
             LoadItemsCommand.Execute(null);
         }
 

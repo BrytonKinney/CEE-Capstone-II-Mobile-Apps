@@ -13,6 +13,8 @@ using CapstoneApp.Shared.Entities.RssFeed;
 using CapstoneApp.Shared.Services.Interfaces;
 using LightInject;
 using DBC = CapstoneApp.Shared.Constants.DatabaseConstants;
+using System.Threading;
+
 namespace Shared.Services.Implementations
 {
     public class DatabaseProvider : IDatabaseProvider
@@ -31,7 +33,6 @@ namespace Shared.Services.Implementations
             try
             {
                 await _connection.CreateTablesAsync<RssFeed, WeatherLocations, SmartMirror, QuadrantSettings, GoogleEntity>();
-
             }
             catch (Exception ex)
             {

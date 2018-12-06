@@ -35,7 +35,7 @@ namespace CapstoneApp.Shared.Services.Implementations
                 return;
 
             if(args.Configuration != null)
-                _msgService.SendConfig(args.Configuration);
+                await _msgService.SendConfig(args.Configuration);
 
             else if (args.Entity != null)
                 await _dbService.AddOrUpdateAsync(args.Entity);
@@ -47,16 +47,27 @@ namespace CapstoneApp.Shared.Services.Implementations
             {
                 if (_smService.GetInstance() == null)
                 {
-                    Device.BeginInvokeOnMainThread(async () =>
+                    await args.Page.Navigation.PushAsync(new DeviceListPage()).ContinueWith(async (t) =>
                     {
-                        await Application.Current.MainPage.DisplayAlert("Select a Mirror!", "You will need to select a Lustro instance before your changes show up.", "OK");
+                        if (t.IsCompleted)
+                        {
+                            MessagingCenter.Subscribe<DeviceListPage, SmartMirror>(this, "MirrorSelected", async (page, mirror) =>
+                            {
+                                var mirrors = await _dbService.GetConnection().Table<SmartMirror>().ToListAsync();
+                                mirrors = mirrors.Where(m => m.HostName != mirror.HostName).ToList();
+                                foreach (var m in mirrors)
+                                {
+                                    m.IsSelected = 0;
+                                    await _dbService.AddOrUpdateAsync(m);
+                                }
+                                mirror.IsSelected = 1;
+                                await SendOrSaveChanges(new ConfigurationEventArgs(mirror, page));
+                            });
+                        }
                     });
                 }
                 else
-                {
                     await SendOrSaveChanges(args);
-                    _dbService.GetConnection().GetConnection().Commit();
-                }
 
             }
             catch (Exception ex)

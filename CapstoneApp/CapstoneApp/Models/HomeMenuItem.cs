@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,11 +8,10 @@ namespace CapstoneApp.Models
     {
         Devices,
         RssFeeds,
+        About,
         Weather,
-        Email,
         Google,
-        QuadrantSettings,
-        About
+        Email
     }
     public class HomeMenuItem
     {

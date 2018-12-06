@@ -12,20 +12,20 @@ namespace CapstoneApp.Shared.Models
             Id = loc.Id;
             Name = loc.Name;
             Enabled = loc.Enabled == 1;
-            LocationProvider = loc.LocationCode;
             if(loc.LocationCode == WeatherSettings.Location.CityCountry)
             {
-                City = loc.City;
-                CountryCode = loc.Country;
+                string[] locSplit = loc.LocationString.Split(',');
+                City = locSplit[0];
+                CountryCode = locSplit[1];
             }
             else if(loc.LocationCode == WeatherSettings.Location.Coordinates)
             {
-                Latitude = loc.Latitude;
-                Longitude = loc.Longitude;
+                string[] locSplit = loc.LocationString.Split(',');
+                Latitude = locSplit[0];
+                Longitude = locSplit[1];
             }
-            else if (loc.LocationCode == WeatherSettings.Location.ZIP)
-                ZipCode = loc.ZipCode;
-
+            else if(loc.LocationCode == WeatherSettings.Location.ZIP)
+                ZipCode = loc.LocationString;
         }
         public string Name { get; set; }
 

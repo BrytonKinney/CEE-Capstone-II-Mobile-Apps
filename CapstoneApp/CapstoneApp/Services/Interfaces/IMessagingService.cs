@@ -8,6 +8,6 @@ namespace CapstoneApp.Shared.Services.Interfaces
 {
     public interface IMessagingService
     {
-        void SendConfig(MirrorConfig config);
+        Task SendConfig(MirrorConfig config);
     }
 }

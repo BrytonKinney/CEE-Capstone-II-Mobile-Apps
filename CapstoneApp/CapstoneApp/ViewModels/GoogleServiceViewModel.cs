@@ -1,4 +1,5 @@
-﻿using CapstoneApp.Shared.Entities;
+﻿using CapstoneApp.Shared.Constants;
+using CapstoneApp.Shared.Entities;
 using CapstoneApp.Shared.Models;
 using CapstoneApp.Shared.Views;
 using CapstoneApp.ViewModels;
@@ -17,18 +18,39 @@ namespace CapstoneApp.Shared.ViewModels
     {
         public Command LoadItemsCommand { get; set; }
         public ObservableCollection<GoogleDataModel> Services { get; set; }
+        private IDatabaseProvider _dbDriver;
+
         public GoogleServiceViewModel()
         {
+            _dbDriver = App.Container.GetInstance<IDatabaseProvider>();
+
+            //Delete table
+            //_dbDriver.GetConnection().DropTableAsync<GoogleEntity>();
+
             Services = new ObservableCollection<GoogleDataModel>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            MessagingCenter.Subscribe<GooglePage, GoogleDataModel>(this, "AddGoogleAccount", async (obj, item) =>
+            LoadItemsCommand.Execute(null);
+            MessagingCenter.Subscribe<GooglePage, GoogleDataModel>(this, "AddGoogleAccount", async (page, item) =>
             {
-                var newModel = new GoogleEntity(item);
-                await DbProvider.AddOrUpdateAsync(newModel);
-                Services.Add(new GoogleDataModel(newModel));
-                new Command(async () => await ExecuteLoadItemsCommand()).Execute(null);
+                await SaveEntity(new GoogleEntity(item), page).ContinueWith(async (t) =>
+                {
+                    if (t.IsCompleted)
+                    {
+                        Device.BeginInvokeOnMainThread(async () =>
+                        {
+                            await Application.Current.MainPage.DisplayAlert("Account Added", "Google Account Added.", "OK");
+                            await page.Navigation.PopAsync();
+                            new Command(async () => await ExecuteLoadItemsCommand()).Execute(null);
+                        });
+
+                    }
+
+                });
             });
+
         }
+
+
         async Task ExecuteLoadItemsCommand()
         {
             if (IsBusy)
@@ -36,8 +58,8 @@ namespace CapstoneApp.Shared.ViewModels
             IsBusy = true;
             try
             {
-                Services.Clear();
-                var googleEntities = await DbProvider.GetConnection().Table<GoogleEntity>().ToListAsync();
+                Services.Clear(); 
+                var googleEntities = await _dbDriver.GetConnection().Table<GoogleEntity>().ToListAsync();
                 if (googleEntities.Count > 0)
                 {
                     var newModels = googleEntities.Select(x => new GoogleDataModel(x));

@@ -5,7 +5,6 @@ using CapstoneApp.Shared.Services.Interfaces;
 using CapstoneApp.Shared.ViewModels;
 using CapstoneApp.Shared.Views;
 using CapstoneApp.Views;
-using LightInject;
 using Shared.Services.Implementations;
 using Shared.Services.Interfaces;
 using Xamarin.Forms;

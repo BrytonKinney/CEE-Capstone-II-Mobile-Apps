@@ -37,10 +37,5 @@ namespace CapstoneApp.Shared.Views
 	        var pick = (Picker) sender;
 	        MessagingCenter.Send(this, "NewWeatherLocationIndexChange", pick.SelectedIndex);
 	    }
-
-	    private void CountryDropdowns_OnSelectedIndexChanged(object sender, EventArgs e)
-	    {
-	        throw new NotImplementedException();
-	    }
 	}
 }

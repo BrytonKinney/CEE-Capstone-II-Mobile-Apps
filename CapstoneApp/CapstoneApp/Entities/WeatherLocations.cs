@@ -11,27 +11,21 @@ namespace CapstoneApp.Shared.Entities
         {
             Id = model.Id;
             Name = model.Name;
-            Latitude = model.Latitude;
-            Longitude = model.Longitude;
-            ZipCode = model.ZipCode;
-            City = model.City;
-            Country = model.CountryCode;
+            if(model.LocationProvider == WeatherSettings.Location.CityCountry)
+                LocationString = $"{model.City},{model.CountryCode}";
+            else if(model.LocationProvider == WeatherSettings.Location.Coordinates)
+                LocationString = $"{model.Latitude},{model.Longitude}";
+            else if(model.LocationProvider == WeatherSettings.Location.ZIP)
+                LocationString = model.ZipCode;
             LocationCode = model.LocationProvider;
             Enabled = model.Enabled ? 1 : 0;
         }
 
         [SQLite.Column(DatabaseConstants.WeatherLocations.WEATHER_NAME)]
         public string Name { get; set; }
-        [SQLite.Column(DatabaseConstants.WeatherLocations.WEATHER_LOCATION_LATITUDE)]
-        public string Latitude { get; set; }
-        [SQLite.Column(DatabaseConstants.WeatherLocations.WEATHER_LOCATION_LONGITUDE)]
-        public string Longitude { get; set; }
-        [SQLite.Column(DatabaseConstants.WeatherLocations.WEATHER_LOCATION_ZIP)]
-        public string ZipCode { get; set; }
-        [SQLite.Column(DatabaseConstants.WeatherLocations.WEATHER_LOCATION_CITY)]
-        public string City { get; set; }
-        [SQLite.Column(DatabaseConstants.WeatherLocations.WEATHER_LOCATION_COUNTRY)]
-        public string Country { get; set; }
+
+        [SQLite.Column(DatabaseConstants.WeatherLocations.WEATHER_LOCATION_STRING)]
+        public string LocationString { get; set; }
 
         [SQLite.Column(DatabaseConstants.WeatherLocations.WEATHER_LOCATION_CODE)]
         public WeatherSettings.Location LocationCode { get; set; }

@@ -20,6 +20,8 @@ namespace CapstoneApp.Views
             MasterBehavior = MasterBehavior.Popover;
 
             MenuPages.Add((int)MenuItemType.RssFeeds, (NavigationPage)Detail);
+            if (App.Container.GetInstance<ISmartMirrorService>().GetInstance() == null)
+                NavigateFromMenu((int) MenuItemType.Devices);
         }
 
         public async Task NavigateFromMenu(int id)
@@ -34,22 +36,15 @@ namespace CapstoneApp.Views
                     case (int)MenuItemType.RssFeeds:
                         MenuPages.Add(id, new NavigationPage(new RssFeedsPage()));
                         break;
+                    case (int)MenuItemType.About:
+                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
+                        break;
                     case (int)MenuItemType.Weather:
                         MenuPages.Add(id, new NavigationPage(new WeatherProviderPage()));
                         break;
                     case (int)MenuItemType.Google:
                         MenuPages.Add(id, new NavigationPage(new GooglePage()));
                         break;
-                    case (int)MenuItemType.Email:
-                        MenuPages.Add(id, new NavigationPage(new GooglePage()));
-                        break;
-                    case (int)MenuItemType.QuadrantSettings:
-                        MenuPages.Add(id, new NavigationPage(new QuadrantSettingsPage()));
-                        break;
-                    case (int)MenuItemType.About:
-                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
-                        break;
-                    
                 }
             }
 

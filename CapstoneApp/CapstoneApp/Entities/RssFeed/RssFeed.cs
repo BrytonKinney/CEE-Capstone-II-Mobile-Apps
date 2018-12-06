@@ -37,6 +37,10 @@ namespace CapstoneApp.Shared.Entities.RssFeed
 
         #region Properties
 
+        //[Column(DBC.ID)]
+        //[PrimaryKey, AutoIncrement, Indexed]
+        //public int? Id { get; set; }
+
         /// <summary>
         /// A read-only property to access the feed's url.
         /// </summary>

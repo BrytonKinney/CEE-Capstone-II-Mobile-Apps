@@ -19,15 +19,12 @@ namespace CapstoneApp.Shared.Views
 			var item = args.SelectedItem as SmartMirrorModel;
 			if (item == null)
 				return;
-            var smSvc = App.Container.GetInstance<ISmartMirrorService>();
-		   // if (smSvc.GetInstance() == null)
-		   //     return;
-		    smSvc.SetInstance(item);
+			App.Container.GetInstance<ISmartMirrorService>().SetInstance(item);
 			deviceListView.SelectedItem = null;
 			SmartMirror selectedMirror = new SmartMirror(item);
 			var _db = App.Container.GetInstance<IDatabaseProvider>();
 			await _db.AddOrUpdateAsync(selectedMirror);
-			//await Navigation.PushAsync(new RssFeedsPage());
+			await Navigation.PushAsync(new RssFeedsPage());
 		    MessagingCenter.Send(this, "MirrorSelected", selectedMirror);
 		}
 

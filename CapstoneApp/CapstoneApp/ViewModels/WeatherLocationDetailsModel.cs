@@ -87,7 +87,6 @@ namespace CapstoneApp.Shared.ViewModels
         private void ChangeViewByIndex(ContentPage page, int index)
         {
             var weatherPage = (NewWeatherLocationPage) page;
-            Item.LocationProvider = (WeatherSettings.Location) index;
             if(index == (int)WeatherSettings.Location.ZIP)
             {
                 ZipVisible = true;
@@ -97,7 +96,7 @@ namespace CapstoneApp.Shared.ViewModels
                 CityCountryVisible = false;
                 Item.City = "";
                 Item.CountryCode = "";
-                //Item.LocationProvider = WeatherSettings.Location.ZIP;
+                Item.LocationProvider = WeatherSettings.Location.ZIP;
                 OnPropertyChanged(nameof(Item));
             }
             else if(index == (int)WeatherSettings.Location.Coordinates)
@@ -115,7 +114,7 @@ namespace CapstoneApp.Shared.ViewModels
                         Item.Longitude = t.Result.Longitude.ToString();
                     }
                 });
-                //Item.LocationProvider = WeatherSettings.Location.Coordinates;
+                Item.LocationProvider = WeatherSettings.Location.Coordinates;
                 OnPropertyChanged(nameof(Item));
             }
             else if(index == (int)WeatherSettings.Location.CityCountry)
@@ -126,7 +125,7 @@ namespace CapstoneApp.Shared.ViewModels
                 Item.Longitude = "";
                 ZipVisible = false;
                 Item.ZipCode = "";
-                //Item.LocationProvider = WeatherSettings.Location.CityCountry;
+                Item.LocationProvider = WeatherSettings.Location.CityCountry;
                 OnPropertyChanged(nameof(Item));
             }
         }

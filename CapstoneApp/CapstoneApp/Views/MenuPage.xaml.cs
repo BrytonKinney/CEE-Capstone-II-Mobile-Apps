@@ -20,10 +20,8 @@ namespace CapstoneApp.Views
                 new HomeMenuItem {Id = MenuItemType.Devices, Title = "Smart Mirrors" },
                 new HomeMenuItem {Id = MenuItemType.RssFeeds, Title="RSS Feeds" },
                 new HomeMenuItem {Id = MenuItemType.Weather, Title="Weather Services" },
-                new HomeMenuItem {Id = MenuItemType.Google, Title="Google Authentication"},
-                new HomeMenuItem {Id = MenuItemType.QuadrantSettings, Title = "Quadrant Settings" },
-                new HomeMenuItem {Id = MenuItemType.Email, Title="Email"},
-                new HomeMenuItem {Id = MenuItemType.About, Title="About" }
+                new HomeMenuItem {Id = MenuItemType.Google, Title="Google Account"},
+                new HomeMenuItem {Id = MenuItemType.About, Title="About" },
             };
 
             ListViewMenu.ItemsSource = menuItems;
