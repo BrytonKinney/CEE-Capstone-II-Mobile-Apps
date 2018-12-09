@@ -69,7 +69,7 @@ namespace CapstoneApp.Shared.Constants
             public const string AuthUrl = "AuthUrl";
             public const string ClientId = "ClientId";
             public const string Scope = "Scope";
-
+            public const string Sent = "Sent";
         }
 
     }
@@ -79,11 +79,23 @@ namespace CapstoneApp.Shared.Constants
         {
             new QuadrantSettings()
             {
-                ItemType = QuadrantConstants.ItemTypes.RSS_FEEDS, Quadrant = QuadrantConstants.Q1
+                ItemType = QuadrantConstants.ItemTypeDescriptors.RSS_FEEDS, Quadrant = QuadrantConstants.Q1
             },
             new QuadrantSettings()
             {
-                ItemType = QuadrantConstants.ItemTypes.WEATHER_LOCATIONS, Quadrant = QuadrantConstants.Q2
+                ItemType = QuadrantConstants.ItemTypeDescriptors.WEATHER_LOCATIONS, Quadrant = QuadrantConstants.Q2
+            },
+            new QuadrantSettings()
+            {
+                ItemType = QuadrantConstants.ItemTypeDescriptors.EMAIL, Quadrant = QuadrantConstants.Q3
+            },
+            new QuadrantSettings()
+            {
+                ItemType = QuadrantConstants.ItemTypeDescriptors.CALENDAR, Quadrant = QuadrantConstants.Q4
+            },
+            new QuadrantSettings()
+            {
+                ItemType = "", Quadrant = QuadrantConstants.Q5
             }
         };
     }
@@ -238,6 +250,7 @@ namespace CapstoneApp.Shared.Constants
             public const string WEATHER_LOCATIONS = "Weather Locations";
             public const string EMAIL = "Email";
             public const string CALENDAR = "Calendar";
+            public const string NONE = "";
         }
 
         public const int Q1 = 1;
@@ -246,7 +259,7 @@ namespace CapstoneApp.Shared.Constants
         public const int Q4 = 4;
         public const int Q5 = 5;
 
-        public static List<string> PickerOptions = new List<string>() { ItemTypeDescriptors.RSS_FEEDS, ItemTypeDescriptors.WEATHER_LOCATIONS, ItemTypeDescriptors.EMAIL, ItemTypeDescriptors.CALENDAR };
+        public static List<string> PickerOptions = new List<string>() { ItemTypeDescriptors.RSS_FEEDS, ItemTypeDescriptors.WEATHER_LOCATIONS, ItemTypeDescriptors.EMAIL, ItemTypeDescriptors.CALENDAR, ItemTypeDescriptors.NONE };
     }
 
     public static class AuthConstants
@@ -255,7 +268,7 @@ namespace CapstoneApp.Shared.Constants
         public static string AndroidClientId = "178940052019-ejh5h9ojesq877n66sb7bhtai5q0kp37.apps.googleusercontent.com";
 
         // These values do not need changing
-        public static string Scope = "https://www.googleapis.com/auth/plus.me https://mail.google.com/"; //https://mail.google.com/  https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile
+        public static string Scope = "https://www.googleapis.com/auth/plus.me https://mail.google.com/ https://www.googleapis.com/auth/calendar.readonly"; //https://mail.google.com/  https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile
         public static string AuthorizeUrl = "https://accounts.google.com/o/oauth2/auth";
         public static string AccessTokenUrl = "https://www.googleapis.com/oauth2/v4/token";
         public static string UserInfoUrl = "https://www.googleapis.com/oauth2/v2/userinfo";

@@ -11,11 +11,13 @@ namespace CapstoneApp.Shared.Models
             AccessToken = entity.AccessToken;
             RefreshToken = entity.RefreshToken;
             ClientId = entity.RefreshToken;
+            Sent = entity.Sent;
         }
         public string Email { get; set; }
         public string AccessToken { get; set; }
         public string RefreshToken { get; set; }
         public string ClientId { get; set; }
+        public DateTime Sent { get; set; }
     }
 }
 

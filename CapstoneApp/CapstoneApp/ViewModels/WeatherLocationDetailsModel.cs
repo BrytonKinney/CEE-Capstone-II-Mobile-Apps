@@ -73,7 +73,20 @@ namespace CapstoneApp.Shared.ViewModels
         public WeatherLocationDetailsViewModel(WeatherModel item)
         {
             Item = new WeatherModel();
-            MessagingCenter.Subscribe<NewWeatherLocationPage, WeatherModel>(this, "SaveWeatherChanges", async (obj, itemRec) => await SaveEntity(new WeatherLocations(itemRec), obj));
+            MessagingCenter.Unsubscribe<NewWeatherLocationPage, WeatherModel>(this, "SaveWeatherChanges");
+            MessagingCenter.Subscribe<NewWeatherLocationPage, WeatherModel>(this, "SaveWeatherChanges", async (obj, itemRec) =>
+            {
+                await SaveEntity(new WeatherLocations(itemRec), obj);
+                Device.BeginInvokeOnMainThread(async () => { await obj.Navigation.PopAsync(); });
+            });
+            MessagingCenter.Unsubscribe<NewWeatherLocationPage, object>(this, "CountrySelected");
+            MessagingCenter.Subscribe<NewWeatherLocationPage, object>(this, "CountrySelected", (page, country) =>
+            {
+                    Country c = country as Country;
+                    Item.CountryCode = c.TwoLetterCode;
+                    OnPropertyChanged(nameof(Item));
+            });
+            MessagingCenter.Unsubscribe<NewWeatherLocationPage, int>(this, "NewWeatherLocationIndexChange");
             MessagingCenter.Subscribe<NewWeatherLocationPage, int>(this, "NewWeatherLocationIndexChange", ChangeViewByIndex);
             ZipVisible = false;
             CityCountryVisible = false;

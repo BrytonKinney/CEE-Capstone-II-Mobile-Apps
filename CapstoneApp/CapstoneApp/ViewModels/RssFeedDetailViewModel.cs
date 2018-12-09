@@ -16,6 +16,7 @@ namespace CapstoneApp.Shared.ViewModels
         {
             Title = item?.Text;
             Item = item;
+            MessagingCenter.Unsubscribe<RssFeedDetailPage, RssFeedModel>(this, "SaveRssFeed");
             MessagingCenter.Subscribe<RssFeedDetailPage, RssFeedModel>(this, "SaveRssFeed",
                 async (page, model) =>
                 {
@@ -27,12 +28,13 @@ namespace CapstoneApp.Shared.ViewModels
                             Device.BeginInvokeOnMainThread(async () =>
                             {
                                 await Application.Current.MainPage.DisplayAlert("Saved changes", "RSS Feed Settings saved.", "OK");
-                      //          await page.Navigation.PopAsync();
+                                await page.Navigation.PopAsync();
                             });
 
                         }
                     });
                 });
+            MessagingCenter.Unsubscribe<RssFeedDetailPage, RssFeedModel>(this, "DeleteRssFeed");
             MessagingCenter.Subscribe<RssFeedDetailPage, RssFeedModel>(this, "DeleteRssFeed", async (page, model) =>
             {
                 var db = App.Container.GetInstance<IDatabaseProvider>();

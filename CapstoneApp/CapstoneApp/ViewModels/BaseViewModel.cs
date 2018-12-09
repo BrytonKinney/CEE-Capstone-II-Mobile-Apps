@@ -63,6 +63,8 @@ namespace CapstoneApp.Shared.ViewModels
             }
             else
             {
+                if (entity is GoogleEntity ge)
+                    ge.Sent = DateTime.Now;
                 await DbProvider.AddOrUpdateAsync(entity).ConfigureAwait(false);
                 OnSettingsChanged(sendingPage);
             }
@@ -73,11 +75,11 @@ namespace CapstoneApp.Shared.ViewModels
             {
                 if (SettingsChanged != null)
                 {
-                    var mirror = await DbProvider.GetConnection().Table<SmartMirror>().FirstOrDefaultAsync();
-                    var feeds = DbProvider.GetConnection().Table<RssFeed>().Where(rss => rss.Enabled == 1);
-                    var weatherLocations = DbProvider.GetConnection().Table<WeatherLocations>().Where(weather => weather.Enabled == 1);
-                    var quadrants = await DbProvider.GetConnection().Table<QuadrantSettings>().ToListAsync();
-                    var google = await DbProvider.GetConnection().Table<GoogleEntity>().ToListAsync();
+                    var mirror = await DbProvider.GetConnection().Table<SmartMirror>().FirstOrDefaultAsync().ConfigureAwait(false);
+                    var feeds = await DbProvider.GetConnection().Table<RssFeed>().Where(rss => rss.Enabled == 1).ToListAsync().ConfigureAwait(false);
+                    var weatherLocations = await DbProvider.GetConnection().Table<WeatherLocations>().Where(weather => weather.Enabled == 1).ToListAsync().ConfigureAwait(false);
+                    var quadrants = await DbProvider.GetConnection().Table<QuadrantSettings>().ToListAsync().ConfigureAwait(false);
+                    var google = await DbProvider.GetConnection().Table<GoogleEntity>().ToListAsync().ConfigureAwait(false);
 
                     if (quadrants.Count == 0)
                         quadrants = CapstoneApp.Shared.Constants.DefaultQuadrantSettings.Defaults.ToList();
@@ -85,8 +87,8 @@ namespace CapstoneApp.Shared.ViewModels
                     MirrorConfig config = new MirrorConfig
                     {
                         Mirror = mirror,
-                        RssFeeds = await feeds.ToListAsync(),
-                        WeatherLocations = await weatherLocations.ToListAsync(),
+                        RssFeeds = feeds,
+                        WeatherLocations = weatherLocations,
                         Configuration = quadrants,
                         GoogleInfo = google
                     };

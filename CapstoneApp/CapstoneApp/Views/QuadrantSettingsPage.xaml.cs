@@ -35,11 +35,11 @@ namespace CapstoneApp.Shared.Views
 	    {
 	        Dictionary<int, string> settings = new Dictionary<int, string>()
 	        {
-	            {Constants.QuadrantConstants.Q1, (string)Q1.SelectedItem},
-	            {Constants.QuadrantConstants.Q2, (string)Q2.SelectedItem },
-	            {Constants.QuadrantConstants.Q3, (string)Q3.SelectedItem },
-	            {Constants.QuadrantConstants.Q4, (string)Q4.SelectedItem },
-	            {Constants.QuadrantConstants.Q5, (string)Q5.SelectedItem },
+	            { Constants.QuadrantConstants.Q1, (string)Q1.SelectedItem },
+	            { Constants.QuadrantConstants.Q2, (string)Q2.SelectedItem },
+	            { Constants.QuadrantConstants.Q3, (string)Q3.SelectedItem },
+	            { Constants.QuadrantConstants.Q4, (string)Q4.SelectedItem },
+	            { Constants.QuadrantConstants.Q5, (string)Q5.SelectedItem },
 	        };
 	        MessagingCenter.Send(this, "QuadrantsSaved", settings);
 	    }

@@ -25,7 +25,7 @@ namespace CapstoneApp.Shared.Views
 		async void Save_Clicked(object sender, EventArgs e)
 		{
 			MessagingCenter.Send(this, "SaveWeatherChanges", Item);
-			await Navigation.PopModalAsync();
+			await Navigation.PopAsync();
 		}
 	}
 }

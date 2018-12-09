@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Auth;
 using Xamarin.Forms;
 
 namespace CapstoneApp.Shared.ViewModels
@@ -21,11 +22,14 @@ namespace CapstoneApp.Shared.ViewModels
         {
             Services = new ObservableCollection<GoogleDataModel>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            MessagingCenter.Unsubscribe<GooglePage, GoogleDataModel>(this, "AddGoogleAccount");
             MessagingCenter.Subscribe<GooglePage, GoogleDataModel>(this, "AddGoogleAccount", async (obj, item) =>
             {
                 var newModel = new GoogleEntity(item);
-                await DbProvider.AddOrUpdateAsync(newModel);
-                Services.Add(new GoogleDataModel(newModel));
+                await DbProvider.GetConnection().DeleteAllAsync<GoogleEntity>();
+                await SaveEntity(newModel, obj);
+                if(Services.All(x => newModel.Email != x.Email))
+                    Services.Add(new GoogleDataModel(newModel));
                 new Command(async () => await ExecuteLoadItemsCommand()).Execute(null);
             });
         }

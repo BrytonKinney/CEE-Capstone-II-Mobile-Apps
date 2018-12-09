@@ -30,13 +30,17 @@ namespace CapstoneApp.Shared.ViewModels
             DiscoveredDevices = new ObservableCollection<SmartMirrorModel>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             _smService = App.Container.GetInstance<ISmartMirrorService>();
-            MessagingCenter.Subscribe<DeviceListPage, SmartMirror>(this, "MirrorSelected", (page, mirror) =>
+            MessagingCenter.Unsubscribe<DeviceListPage, SmartMirror>(this, "MirrorSelected");
+            MessagingCenter.Subscribe<DeviceListPage, SmartMirror>(this, "MirrorSelected", async (page, mirror) =>
             {
+                await DbProvider.GetConnection().DeleteAllAsync<SmartMirror>();
+                await DbProvider.AddOrUpdateAsync(mirror);
                 _smService.SetInstance(new SmartMirrorModel(mirror));
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     await Application.Current.MainPage.DisplayAlert("Smart Mirror Selected", "Smart Mirror has been selected.", "OK");
                 });
+                await page.Navigation.PopModalAsync();
             });
             LoadItemsCommand.Execute(null);
         }

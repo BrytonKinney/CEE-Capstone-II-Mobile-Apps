@@ -40,7 +40,8 @@ namespace CapstoneApp.Shared.Views
 
 	    private void CountryDropdowns_OnSelectedIndexChanged(object sender, EventArgs e)
 	    {
-	        throw new NotImplementedException();
+	        var pick = (Picker) sender;
+	        MessagingCenter.Send(this, "CountrySelected", pick.SelectedItem);
 	    }
 	}
 }

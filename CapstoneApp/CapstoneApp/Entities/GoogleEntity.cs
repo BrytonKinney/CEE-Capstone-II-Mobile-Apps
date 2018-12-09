@@ -18,7 +18,7 @@ namespace CapstoneApp.Shared.Entities
             AuthUrl = AuthConstants.AuthorizeUrl;
             AccessTokenUrl = AuthConstants.AccessTokenUrl;
             Scope = AuthConstants.Scope;
-
+            Sent = model.Sent;
         }
 
         [JsonProperty(PropertyName = GA.Email)]
@@ -50,6 +50,14 @@ namespace CapstoneApp.Shared.Entities
         [SQLite.Column(DatabaseConstants.Google.SCOPE)]
         public string Scope { get; set; }
 
-
+        [JsonProperty]
+        public DateTime Sent { get; set; }
+        public override bool Equals(object obj)
+        {
+            if (obj is GoogleEntity ge)
+                return Id == ge.Id && Email == ge.Email && ClientId == ge.ClientId;
+            else
+                return false;
+        }
     }
 }

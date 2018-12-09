@@ -37,7 +37,7 @@ namespace CapstoneApp.ViewModels
                 Title = "None";
             Items = new ObservableCollection<RssFeedModel>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
+            MessagingCenter.Unsubscribe<NewItemPage, RssFeedModel>(this, "AddRssFeed");
             MessagingCenter.Subscribe<NewItemPage, RssFeedModel>(this, "AddRssFeed", async (obj, item) => await AddFeedAsync(obj, item));
             LoadItemsCommand.Execute(null);
         }

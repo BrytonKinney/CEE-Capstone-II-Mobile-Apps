@@ -25,23 +25,23 @@ namespace CapstoneApp.Shared.ViewModels
 
         public Command LoadQuadrantsCommand { get; set; }
 
+
         public ObservableCollection<string> PickerOptions = new ObservableCollection<string>();
         public QuadrantSettingsViewModel()
         {
             Quadrants = new ObservableCollection<QuadrantSettingsModel>();
             LoadQuadrantsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             LoadQuadrantsCommand.Execute(null);
-            MessagingCenter.Subscribe<QuadrantSettingsPage, Picker>(this, "QuadrantChanged", (page, picker) =>
-            {
-                if (picker.Title == "Quadrant One")
-                    Q1.ItemType = picker.SelectedItem.ToString().ToLower();
-            });
+            MessagingCenter.Unsubscribe<QuadrantSettingsPage, Dictionary<int, string>>(this, "QuadrantsSaved");
             MessagingCenter.Subscribe<QuadrantSettingsPage, Dictionary<int, string>>(this, "QuadrantsSaved",
             async (page, dict) =>
             {
                 foreach (KeyValuePair<int, string> kvp in dict)
                 {
-                    await DbProvider.AddOrUpdateAsync(new QuadrantSettings() {Id = kvp.Key, ItemType = kvp.Value, Quadrant = kvp.Key});
+                    await SaveEntity(new QuadrantSettings
+                    {
+                        Id = kvp.Key, ItemType = kvp.Value, Quadrant = kvp.Key
+                    }, page); //   await DbProvider.AddOrUpdateAsync(new QuadrantSettings() {Id = kvp.Key, ItemType = kvp.Value, Quadrant = kvp.Key});
                 }
 
                 Device.BeginInvokeOnMainThread(async () =>

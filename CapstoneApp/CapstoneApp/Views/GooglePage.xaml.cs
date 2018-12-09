@@ -88,7 +88,7 @@ namespace CapstoneApp.Shared.Views
 
                 // If the user is authenticated, request their basic user data from Google
                 // for finished profile https://people.googleapis.com/v1/people/me?personFields=emailAddresses%2Cphotos&key=
-                string UserInfoUrl = "https://www.googleapis.com/auth/userinfo";
+                string UserInfoUrl = "https://www.googleapis.com/gmail/v1/users/me/profile";
 
                     // If the user is authenticated, request their basic user data from Google
             //    string UserInfoUrl = "https://www.googleapis.com/auth/calendar.readonly";
@@ -100,14 +100,14 @@ namespace CapstoneApp.Shared.Views
 
                     string userJson = await response.GetResponseTextAsync();
                     JObject data = JObject.Parse(userJson);
-                  //  model.Email = data["emailAddress"].ToString();
+                    model.Email = data["emailAddress"].ToString();
                     MessagingCenter.Send(this, "AddGoogleAccount", model);
                 }
                 else
                 {
 
                 }
-                await DisplayAlert("Email address", e.Account.Username, "OK");
+                await DisplayAlert("Email address", model.Email, "OK");
             }
         }
     }

@@ -23,6 +23,7 @@ namespace CapstoneApp.Shared.ViewModels
             _dbDriver = App.Container.GetInstance<IDatabaseProvider>();
             Services = new ObservableCollection<WeatherModel>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            MessagingCenter.Unsubscribe<NewWeatherLocationPage, WeatherModel>(this, "AddWeatherLocation");
             MessagingCenter.Subscribe<NewWeatherLocationPage, WeatherModel>(this, "AddWeatherLocation", async (obj, item) =>
             {
                 var newModel = new WeatherLocations(item);
