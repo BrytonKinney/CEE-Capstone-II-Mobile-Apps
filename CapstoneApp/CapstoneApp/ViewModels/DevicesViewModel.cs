@@ -33,14 +33,30 @@ namespace CapstoneApp.Shared.ViewModels
             MessagingCenter.Unsubscribe<DeviceListPage, SmartMirror>(this, "MirrorSelected");
             MessagingCenter.Subscribe<DeviceListPage, SmartMirror>(this, "MirrorSelected", async (page, mirror) =>
             {
-                await DbProvider.GetConnection().DeleteAllAsync<SmartMirror>();
-                await DbProvider.AddOrUpdateAsync(mirror);
-                _smService.SetInstance(new SmartMirrorModel(mirror));
-                Device.BeginInvokeOnMainThread(async () =>
+                try
                 {
-                    await Application.Current.MainPage.DisplayAlert("Smart Mirror Selected", "Smart Mirror has been selected.", "OK");
-                });
-                await page.Navigation.PopModalAsync();
+                    var mirrors = await DbProvider.GetConnection().Table<SmartMirror>().ToListAsync();
+                    if (mirrors.Count > 0)
+                    {
+                        var m = await DbProvider.GetConnection()
+                            .QueryAsync<SmartMirror>("select * from mirror where hostname = ?", mirror.HostName);
+                        var ip = mirror.IpAddress;
+                        var _mirror = m.FirstOrDefault();
+                        _mirror.IpAddress = ip;
+                        mirror = _mirror;
+                    }
+                    await DbProvider.AddOrUpdateAsync(mirror);
+                    _smService.SetInstance(new SmartMirrorModel(mirror));
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Smart Mirror Selected", "Smart Mirror has been selected.", "OK");
+                    });
+                    //await page.Navigation.PopModalAsync();
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
             });
             LoadItemsCommand.Execute(null);
         }
